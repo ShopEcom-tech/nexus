@@ -744,7 +744,9 @@ select {
 
 @media (min-width: 1024px) {
     .navbar-cta {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 12px;
     }
 }
 

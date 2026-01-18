@@ -37,54 +37,48 @@
 
     function injectStyles() {
         const styles = `
-            /* Theme Picker - Dropdown Style */
+            /* Theme Picker - Navbar Style */
             .theme-picker {
-                position: fixed;
-                top: 100px;
-                left: 200px;
-                z-index: 9991;
+                position: relative;
+                margin-right: 12px;
                 font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             }
 
-            /* Main toggle button - shows current theme */
             .theme-toggle-btn {
-                width: 44px;
-                height: 44px;
+                width: 36px;
+                height: 36px;
                 border-radius: 50%;
-                background: rgba(15, 15, 20, 0.9);
-                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.05);
                 border: 1px solid rgba(255, 255, 255, 0.1);
                 cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 20px;
+                font-size: 18px;
                 transition: all 0.3s ease;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
 
             .theme-toggle-btn:hover {
-                background: rgba(124, 58, 237, 0.2);
-                border-color: var(--primary-500, #a855f7);
+                background: rgba(255, 255, 255, 0.1);
                 transform: scale(1.05);
             }
 
-            /* Dropdown menu */
             .theme-dropdown {
                 position: absolute;
-                top: 54px;
-                left: 0;
-                min-width: 180px;
+                top: 120%;
+                right: 0;
+                min-width: 160px;
                 background: rgba(15, 15, 20, 0.95);
                 backdrop-filter: blur(20px);
                 border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 16px;
-                padding: 8px;
+                border-radius: 12px;
+                padding: 6px;
                 opacity: 0;
                 visibility: hidden;
-                transform: translateY(-10px);
-                transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateY(-5px);
+                transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
                 box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+                z-index: 1000;
             }
 
             .theme-picker.active .theme-dropdown {
@@ -97,12 +91,11 @@
             .theme-option {
                 display: flex;
                 align-items: center;
-                gap: 12px;
-                padding: 10px 14px;
-                border-radius: 10px;
+                gap: 10px;
+                padding: 8px 12px;
+                border-radius: 8px;
                 cursor: pointer;
                 transition: all 0.2s ease;
-                border: 1px solid transparent;
             }
 
             .theme-option:hover {
@@ -110,56 +103,11 @@
             }
 
             .theme-option.active {
-                background: rgba(124, 58, 237, 0.15);
-                border-color: var(--primary-500, #a855f7);
-            }
-
-            .theme-option-icon {
-                font-size: 18px;
-                width: 24px;
-                text-align: center;
-            }
-
-            .theme-option-name {
-                font-size: 14px;
-                font-weight: 500;
-                color: #e4e4e7;
+                background: rgba(255, 255, 255, 0.1);
             }
 
             .theme-option.active .theme-option-name {
                 color: #ffffff;
-            }
-
-            .theme-option-colors {
-                display: flex;
-                gap: 3px;
-                margin-left: auto;
-            }
-
-            .theme-color-dot {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            /* Mobile positioning */
-            @media (max-width: 768px) {
-                .theme-picker {
-                    top: auto;
-                    bottom: 180px;
-                    left: 150px;
-                }
-
-                .theme-dropdown {
-                    top: auto;
-                    bottom: 54px;
-                    transform: translateY(10px);
-                }
-
-                .theme-picker.active .theme-dropdown {
-                    transform: translateY(0);
-                }
             }
         `;
 
@@ -243,7 +191,23 @@
             </div>
         `;
 
-        document.body.appendChild(picker);
+        // Inject into Navbar CTA if it exists
+        const navbarCta = document.querySelector('.navbar-cta');
+        if (navbarCta) {
+            // Insert after language switcher (if exists) or at the beginning
+            const langSwitcher = navbarCta.querySelector('.lang-switcher');
+            if (langSwitcher) {
+                navbarCta.insertBefore(picker, langSwitcher.nextSibling);
+            } else {
+                navbarCta.insertBefore(picker, navbarCta.firstChild);
+            }
+        } else {
+            // Fallback
+            picker.style.position = 'fixed';
+            picker.style.bottom = '20px';
+            picker.style.left = '20px';
+            document.body.appendChild(picker);
+        }
 
         // Toggle dropdown on button click
         const toggleBtn = picker.querySelector('.theme-toggle-btn');

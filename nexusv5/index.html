@@ -118,7 +118,7 @@
                     <a href="/pages/contact.html" class="navbar-link">Contact</a>
                 </div>
 
-                <div class="navbar-cta" style="display: flex; align-items: center; gap: 10px;">
+                <div class="navbar-cta">
                     <!-- Search Trigger -->
                     <button class="search-btn" onclick="window.commandPalette.open()" aria-label="Rechercher (Ctrl+K)"
                         title="Rechercher (Ctrl+K)">
@@ -562,6 +562,17 @@
 
     <!-- Smooth Scroll Init -->
     <script src="js/smooth-scroll.js"></script>
+    <!-- WASM Fluid Init -->
+    <script type="module">
+        import { WasmFluid } from './js/wasm-fluid.js';
+
+        // Initialize Fluid in Hero Section
+        // Use a smaller internal resolution (e.g., 128 or 256) for performance/retro look
+        // The CSS scales it up to fullscreen
+        new WasmFluid('fluid-canvas', 128, {
+            color: [124, 58, 237] // Primary Purple
+        });
+    </script>
 </body>
 
 

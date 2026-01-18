@@ -393,27 +393,23 @@
     function injectStyles() {
         const styles = `
             .lang-switcher {
-                position: fixed;
-                top: 100px;
-                left: 74px;
-                z-index: 9991;
                 display: flex;
-                background: rgba(15, 15, 20, 0.9);
-                backdrop-filter: blur(10px);
+                background: rgba(255, 255, 255, 0.05);
                 border: 1px solid rgba(255, 255, 255, 0.1);
-                border-radius: 30px;
+                border-radius: 20px;
                 padding: 4px;
+                margin-right: 12px;
             }
 
             .lang-btn {
-                padding: 8px 14px;
+                padding: 6px 12px;
                 border: none;
                 background: transparent;
-                color: #71717a;
-                font-size: 13px;
+                color: #a1a1aa;
+                font-size: 12px;
                 font-weight: 600;
                 cursor: pointer;
-                border-radius: 20px;
+                border-radius: 16px;
                 transition: all 0.2s;
                 font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
             }
@@ -423,16 +419,8 @@
             }
 
             .lang-btn.active {
-                background: linear-gradient(135deg, #7c3aed, #db2777);
+                background: rgba(255, 255, 255, 0.1);
                 color: white;
-            }
-
-            @media (max-width: 768px) {
-                .lang-switcher {
-                    top: auto;
-                    bottom: 180px;
-                    left: 66px;
-                }
             }
         `;
 
@@ -488,12 +476,23 @@
 
         switcher.innerHTML = `
             <button class="lang-btn ${currentLang === 'fr' ? 'active' : ''}" 
-                data-lang="fr" onclick="window.setLanguage('fr')">🇫🇷 FR</button>
+                data-lang="fr" onclick="window.setLanguage('fr')">FR</button>
             <button class="lang-btn ${currentLang === 'en' ? 'active' : ''}" 
-                data-lang="en" onclick="window.setLanguage('en')">🇬🇧 EN</button>
+                data-lang="en" onclick="window.setLanguage('en')">EN</button>
         `;
 
-        document.body.appendChild(switcher);
+        // Inject into Navbar CTA if it exists
+        const navbarCta = document.querySelector('.navbar-cta');
+        if (navbarCta) {
+            // Insert before the search button or at the beginning
+            navbarCta.insertBefore(switcher, navbarCta.firstChild);
+        } else {
+            // Fallback for pages without navbar
+            switcher.style.position = 'fixed';
+            switcher.style.bottom = '20px';
+            switcher.style.right = '20px';
+            document.body.appendChild(switcher);
+        }
     }
 
     window.setLanguage = function (lang) {
