@@ -3,12 +3,11 @@
  * Powered by Barba.js & GSAP
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Check if Barba is loaded
-    if (typeof barba === 'undefined') {
-        console.warn('Barba.js not loaded');
-        return;
-    }
+import barba from '@barba/core';
+import gsap from 'gsap';
+
+export function initBarbaTransitions() {
+    console.log('🔄 Initializing Barba.js...');
 
     barba.init({
         debug: true,
@@ -17,17 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
             name: 'fade',
             sync: false,
             leave(data) {
-                console.log('Barba: leave');
                 return gsap.to(data.current.container, {
                     opacity: 0,
                     duration: 0.5,
                     onComplete: () => {
-                        data.current.container.style.display = 'none'; // Ensure it's gone
+                        data.current.container.style.display = 'none';
                     }
                 });
             },
             enter(data) {
-                console.log('Barba: enter');
                 gsap.set(data.next.container, { opacity: 0 });
                 return gsap.to(data.next.container, {
                     opacity: 1,
@@ -39,38 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
         views: []
     });
 
-    // Error handling
-    barba.hooks.leave(data => {
-        console.log('Barba hook: leave');
-    });
-
-    // Log errors
-    const originalConsoleError = console.error;
-    console.error = function (...args) {
-        if (args[0] && args[0].toString().includes('Barba')) {
-            // alert('Barba Error: ' + args[0]); // Debug alert
-        }
-        originalConsoleError.apply(console, args);
-    };
-
-    // Hooks to re-initialize scripts
+    // Hooks
     barba.hooks.after((data) => {
         // 1. Re-init GSAP Animations
         if (window.initGSAPAnimations) {
-            window.ScrollTrigger.refresh(); // Kill old triggers?
-            // Actually, simply calling init might duplicate listeners. 
-            // Better to just refresh ScrollTrigger for now, 
-            // as initGSAPAnimations adds event listeners that might stack.
-            // For this audit, we will try to just re-run main animations if possible
-            // but relying on ScrollTrigger.refresh() is safer for now.
             window.initGSAPAnimations();
+        } else {
+            // Try to import dynamically or check if module exposed it? 
+            // We attached it to window in gsap-animations.js for this exact reason.
         }
 
-        // 2. Re-init Typewriter (if on home)
-        if (document.getElementById('typewriter-target')) {
-            // Need to reload typewriter script? Or just re-run?
-            // Since it's a class in typewriter.js, we can't easily reach it unless we exposed it.
-            // We'll leave it for now (it might not restart).
+        // 2. Scroll to top
+        if (window.lenis) {
+            window.lenis.resize();
+            window.lenis.scrollTo(0, { immediate: true });
+        } else {
+            window.scrollTo(0, 0);
         }
 
         // 3. Update Active Nav Link
@@ -81,26 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.classList.add('active');
             }
         });
-
-        // 4. Scroll to top
-        // 4. Scroll to top (Lenis Compatible)
-        if (window.lenis) {
-            window.lenis.resize(); // Force recalculate height
-            window.lenis.scrollTo(0, { immediate: true });
-        } else {
-            window.scrollTo(0, 0);
-        }
-
-        // 5. Re-init 3D Tilt
-        if (window.NexusTilt) {
-            window.NexusTilt = new TiltEffect();
-        }
-
-        // 6. Re-init command palette if needed
-
-        // 7. Re-init Cart Listeners
-        if (window.cart) {
-            window.cart.setupEventListeners();
-        }
     });
-});
+}

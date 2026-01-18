@@ -5,12 +5,11 @@
  * Synchronisé avec GSAP ScrollTrigger pour des animations parfaites.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Vérifier si Lenis est chargé via CDN
-    if (typeof Lenis === 'undefined') {
-        console.warn('[Smooth Scroll] Lenis library not loaded.');
-        return;
-    }
+import Lenis from '@studio-freight/lenis';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+export function initSmoothScroll() {
 
     // --- 1. Configuration Initiale ---
     const lenis = new Lenis({
@@ -25,31 +24,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 2. Synchronisation GSAP (Vital pour ScrollTrigger) ---
-    // Si GSAP et ScrollTrigger sont présents, on connecte les deux
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+    // Dire à ScrollTrigger qu'un scroll a eu lieu quand Lenis bouge
+    lenis.on('scroll', ScrollTrigger.update);
 
-        // Dire à ScrollTrigger qu'un scroll a eu lieu quand Lenis bouge
-        lenis.on('scroll', ScrollTrigger.update);
+    // Utiliser la boucle (ticker) de GSAP pour mettre à jour Lenis
+    // Cela assure une synchro parfaite frame-par-frame sans décalage
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
 
-        // Utiliser la boucle (ticker) de GSAP pour mettre à jour Lenis
-        // Cela assure une synchro parfaite frame-par-frame sans décalage
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
+    // Désactiver le lissage de lag GSAP car Lenis gère déjà le lissage
+    gsap.ticker.lagSmoothing(0);
 
-        // Désactiver le lissage de lag GSAP car Lenis gère déjà le lissage
-        gsap.ticker.lagSmoothing(0);
-
-        console.log('%c🌊 Smooth Scroll & GSAP Synced', 'color: #38bdf8; font-weight: bold;');
-    } else {
-        // Fallback sans GSAP : boucle d'animation standard
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-        console.log('%c🌊 Smooth Scroll Enabled (Standalone)', 'color: #38bdf8; font-weight: bold;');
-    }
+    console.log('%c🌊 Smooth Scroll & GSAP Synced', 'color: #38bdf8; font-weight: bold;');
 
     // --- 3. Exposition Globale ---
     // Permet de contrôler le scroll depuis d'autres scripts (ex: modales, preloader)
@@ -62,8 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- 4. Fix pour les liens d'ancrage (#) ---
+    // Note: This might conflict with script.js anchor handling, but Lenis needs to handle it if active.
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            // Check if we should prevent default (if not already handled)
+            // But usually Lenis scrollTo is checking e.preventDefault
             e.preventDefault();
             const targetId = this.getAttribute('href');
             if (targetId && targetId !== '#') {
@@ -71,4 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-});
+}

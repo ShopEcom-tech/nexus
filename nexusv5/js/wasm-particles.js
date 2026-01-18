@@ -1,4 +1,5 @@
 import init, { ParticleSystem } from '../wasm-effects/pkg/wasm_effects.js';
+import * as THREE from 'three';
 
 class WasmParticleSystem {
     constructor(scene, count = 10000) {

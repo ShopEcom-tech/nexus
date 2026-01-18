@@ -3,6 +3,7 @@
    Premium Interactive Background - ENHANCED WITH RUST
    ======================================== */
 
+import * as THREE from 'three';
 import WasmParticleSystem from './wasm-particles.js';
 
 async function initThreeJS() {
