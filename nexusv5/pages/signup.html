@@ -4,15 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CrÃ©ez votre compte client Web Shop">
-    <title>CrÃ©er un compte - Web Shop</title>
+    <meta name="description" content="Créez votre compte client Web Shop">
+    <title>Créer un compte - Web Shop</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/style.css"><style>html.lenis, html.lenis body { height: auto; }.lenis.lenis-smooth { scroll-behavior: auto !important; }.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }.lenis.lenis-stopped { overflow: hidden; }.lenis.lenis-scrolling iframe { pointer-events: none; }</style>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -44,7 +66,7 @@
         <a href="offres.html" class="mobile-menu-link">Offres</a>
         <a href="services.html" class="mobile-menu-link">Services</a>
         <a href="abonnement.html" class="mobile-menu-link">Abonnements</a>
-        <a href="temoignages.html" class="mobile-menu-link">TÃ©moignages</a>
+        <a href="temoignages.html" class="mobile-menu-link">Témoignages</a>
         <a href="contact.html" class="mobile-menu-link">Contact</a>
         <div class="mobile-menu-cta">
             <a href="login.html" class="btn btn-primary">Se connecter</a>
@@ -66,7 +88,7 @@
                     <a href="offres.html" class="navbar-link">Offres</a>
                     <a href="services.html" class="navbar-link">Services</a>
                     <a href="abonnement.html" class="navbar-link">Abonnements</a>
-                    <a href="temoignages.html" class="navbar-link">TÃ©moignages</a>
+                    <a href="temoignages.html" class="navbar-link">Témoignages</a>
                     <a href="contact.html" class="navbar-link">Contact</a>
                 </div>
 
@@ -98,14 +120,14 @@
                                 <img src="../images/webshop-logo.png" alt="Web Shop"
                                     style="width: 80px; height: 80px; object-fit: contain;">
                             </div>
-                            <h1 class="auth-title">CrÃ©er un compte</h1>
+                            <h1 class="auth-title">Créer un compte</h1>
                             <p class="auth-subtitle">Rejoignez-nous et lancez votre projet web</p>
                         </div>
 
                         <form id="signup-form" class="auth-form">
                             <div class="form-row-2">
                                 <div class="form-group">
-                                    <label for="firstname" class="form-label">PrÃ©nom</label>
+                                    <label for="firstname" class="form-label">Prénom</label>
                                     <input type="text" id="firstname" name="firstname" class="form-input"
                                         placeholder="Jean" required autocomplete="given-name">
                                 </div>
@@ -130,7 +152,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="phone" class="form-label">TÃ©lÃ©phone <span
+                                <label for="phone" class="form-label">Téléphone <span
                                         class="optional">(optionnel)</span></label>
                                 <input type="tel" id="phone" name="phone" class="form-input"
                                     placeholder="+33 6 12 34 56 78" autocomplete="tel">
@@ -140,25 +162,39 @@
                                 <label for="password" class="form-label">Mot de passe</label>
                                 <div class="password-input-wrapper">
                                     <input type="password" id="password" name="password" class="form-input"
-                                        placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required autocomplete="new-password" minlength="8">
+                                        placeholder="••••••••" required autocomplete="new-password" minlength="8">
                                     <button type="button" class="password-toggle" aria-label="Afficher le mot de passe">
-                                        <span class="eye-icon">ðŸ‘ï¸</span>
+                                        <span class="eye-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </div>
                                 <div class="password-strength">
                                     <div class="password-strength-bar"></div>
                                 </div>
-                                <p class="form-hint">Minimum 8 caractÃ¨res avec majuscule, minuscule et chiffre</p>
+                                <p class="form-hint">Minimum 8 caractères avec majuscule, minuscule et chiffre</p>
                             </div>
 
                             <div class="form-group">
                                 <label for="password_confirm" class="form-label">Confirmer le mot de passe</label>
                                 <div class="password-input-wrapper">
                                     <input type="password" id="password_confirm" name="password_confirm"
-                                        class="form-input" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required autocomplete="new-password"
+                                        class="form-input" placeholder="••••••••" required autocomplete="new-password"
                                         minlength="8">
                                     <button type="button" class="password-toggle" aria-label="Afficher le mot de passe">
-                                        <span class="eye-icon">ðŸ‘ï¸</span>
+                                        <span class="eye-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                stroke-linecap="round" stroke-linejoin="round">
+                                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                <circle cx="12" cy="12" r="3"></circle>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </div>
                             </div>
@@ -169,7 +205,7 @@
                                     <span class="checkbox-custom"></span>
                                     <span class="checkbox-label">J'accepte les <a href="#"
                                             class="auth-link-inline">conditions d'utilisation</a> et la <a href="#"
-                                            class="auth-link-inline">politique de confidentialitÃ©</a></span>
+                                            class="auth-link-inline">politique de confidentialité</a></span>
                                 </label>
                             </div>
 
@@ -177,17 +213,27 @@
                                 <label class="checkbox-wrapper">
                                     <input type="checkbox" name="newsletter" id="newsletter">
                                     <span class="checkbox-custom"></span>
-                                    <span class="checkbox-label">Recevoir nos actualitÃ©s et offres spÃ©ciales</span>
+                                    <span class="checkbox-label">Recevoir nos actualités et offres spéciales</span>
                                 </label>
                             </div>
 
                             <div id="signup-error" class="auth-error" style="display: none;">
-                                <span class="error-icon">âš ï¸</span>
+                                <span class="error-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="text-red-500">
+                                        <path
+                                            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                                        </path>
+                                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                </span>
                                 <span class="error-message"></span>
                             </div>
 
                             <button type="submit" class="btn btn-primary auth-submit">
-                                <span class="btn-text">CrÃ©er mon compte</span>
+                                <span class="btn-text">Créer mon compte</span>
                                 <span class="btn-loader" style="display: none;">
                                     <span class="loader-dot"></span>
                                     <span class="loader-dot"></span>
@@ -208,39 +254,78 @@
                         </div>
 
                         <div class="auth-footer">
-                            <p>DÃ©jÃ  un compte ? <a href="login.html" class="auth-link-primary">Se connecter</a></p>
+                            <p>Déjà un compte ? <a href="login.html" class="auth-link-primary">Se connecter</a></p>
                         </div>
                     </div>
 
                     <!-- Auth Features -->
                     <div class="auth-features">
-                        <h2 class="auth-features-title">Pourquoi crÃ©er un compte ?</h2>
+                        <h2 class="auth-features-title">Pourquoi créer un compte ?</h2>
                         <div class="auth-feature">
-                            <div class="auth-feature-icon">ðŸš€</div>
+                            <div class="auth-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="text-brand-500">
+                                    <path
+                                        d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z">
+                                    </path>
+                                    <path
+                                        d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z">
+                                    </path>
+                                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+                                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+                                </svg>
+                            </div>
                             <div class="auth-feature-content">
-                                <h3>Devis instantanÃ©</h3>
-                                <p>Recevez un devis personnalisÃ© en quelques minutes</p>
+                                <h3>Devis instantané</h3>
+                                <p>Recevez un devis personnalisé en quelques minutes</p>
                             </div>
                         </div>
                         <div class="auth-feature">
-                            <div class="auth-feature-icon">ðŸ“Š</div>
+                            <div class="auth-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="text-brand-500">
+                                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                                </svg>
+                            </div>
                             <div class="auth-feature-content">
-                                <h3>Suivi en temps rÃ©el</h3>
+                                <h3>Suivi en temps réel</h3>
                                 <p>Suivez l'avancement de votre projet 24/7</p>
                             </div>
                         </div>
                         <div class="auth-feature">
-                            <div class="auth-feature-icon">ðŸ’¬</div>
+                            <div class="auth-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="text-brand-500">
+                                    <path
+                                        d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                                    </path>
+                                </svg>
+                            </div>
                             <div class="auth-feature-content">
-                                <h3>Support dÃ©diÃ©</h3>
+                                <h3>Support dédié</h3>
                                 <p>Un interlocuteur unique pour tous vos projets</p>
                             </div>
                         </div>
                         <div class="auth-feature">
-                            <div class="auth-feature-icon">ðŸŽ</div>
+                            <div class="auth-feature-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="text-brand-500">
+                                    <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                                    <rect x="2" y="7" width="20" height="5"></rect>
+                                    <line x1="12" y1="22" x2="12" y2="7"></line>
+                                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                                </svg>
+                            </div>
                             <div class="auth-feature-content">
                                 <h3>Offres exclusives</h3>
-                                <p>AccÃ©dez Ã  des rÃ©ductions rÃ©servÃ©es aux membres</p>
+                                <p>Accédez à des réductions réservées aux membres</p>
                             </div>
                         </div>
                     </div>
@@ -253,8 +338,8 @@
         <footer class="footer">
             <div class="container">
                 <div class="footer-bottom" style="border-top: none; padding-top: 0;">
-                    <p class="footer-copyright">Â© 2026 Web Shop. Tous droits rÃ©servÃ©s.</p>
-                    <p class="footer-credit">ConÃ§u avec <span>â™¥</span> en France</p>
+                    <p class="footer-copyright">© 2026 Web Shop. Tous droits réservés.</p>
+                    <p class="footer-credit">Conçu avec <span>♥</span> en France</p>
                 </div>
             </div>
         </footer>
@@ -265,7 +350,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="../js/3d-logo.js"></script>
 
-    <!-- Lenis Library (Smooth Scroll) --><script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script><!-- GSAP & ScrollTrigger -->
+    <!-- Lenis Library (Smooth Scroll) -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -285,7 +372,9 @@
 
     <!-- Theme Toggle - Innovation #20 -->
     <script src="../js/theme-toggle.js"></script>
-<!-- Smooth Scroll Init --><script src="../js/smooth-scroll.js"></script><!-- 3D Tilt Effect --><script src="../js/tilt-3d.js"></script></body>
+    <!-- Smooth Scroll Init -->
+    <script src="../js/smooth-scroll.js"></script><!-- 3D Tilt Effect -->
+    <script src="../js/tilt-3d.js"></script>
+</body>
 
 </html>
-

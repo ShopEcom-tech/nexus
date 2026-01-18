@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nexus Client Portal | Project Tracker</title>
+    <!-- We reuse the admin styles for the components -->
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen">
+
+    <!-- Header simulation -->
+    <div
+        class="h-16 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between px-6">
+        <div class="font-bold text-xl text-brand-500">Nexus Client Portal</div>
+        <div class="text-sm text-gray-500">Logged in as: Client</div>
+    </div>
+
+    <!-- React Mount Point -->
+    <div id="client-root" class="p-6 max-w-7xl mx-auto"></div>
+
+    <script type="module" src="../src/react/client-portal-main.tsx"></script>
+</body>
+
+</html>

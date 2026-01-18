@@ -1,7 +1,19 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import react from '@vitejs/plugin-react';
+import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
+    plugins: [
+        react(),
+        svgr({
+            svgrOptions: {
+                icon: true,
+                exportType: "named",
+                namedExport: "ReactComponent",
+            },
+        })
+    ],
     root: '.',
     build: {
         outDir: 'dist',
@@ -26,7 +38,10 @@ export default defineConfig({
                 services: resolve(__dirname, 'pages/services.html'),
                 signup: resolve(__dirname, 'pages/signup.html'),
                 success: resolve(__dirname, 'pages/success.html'),
-                testimonials: resolve(__dirname, 'pages/temoignages.html')
+                testimonials: resolve(__dirname, 'pages/temoignages.html'),
+                reactTest: resolve(__dirname, 'pages/react-test.html'),
+                adminDashboard: resolve(__dirname, 'pages/admin-dashboard.html'),
+                clientPortal: resolve(__dirname, 'pages/client-portal.html')
             }
         }
     },

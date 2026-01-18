@@ -96,295 +96,329 @@ export function initGSAPAnimations() {
     }
 
     // ========================================
-    // HERO SECTION ANIMATIONS
+    // TEXT REVEAL ANIMATION (Mask Effect)
     // ========================================
-    const heroContent = document.querySelector('.hero-content');
+    const splitTextElements = document.querySelectorAll('.section-title, .section-subtitle, .benefit-description, .hero-title, .hero-subtitle');
 
-    if (heroContent) {
-        // Initial hero animation timeline
-        const heroTl = gsap.timeline({ delay: 0.3 });
+    splitTextElements.forEach(el => {
+        // Simple line split simulation (since we don't have SplitText plugin)
+        // We assume the text is inside the element. We wrap it in a div that overflows hidden.
 
-        heroTl
-            .from('.hero-badge', {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            })
-            .from('.hero-title', {
+        // Skip if already processed or has specific ignore class
+        if (el.closest('.no-reveal')) return;
+
+        gsap.fromTo(el,
+            {
                 y: 50,
                 opacity: 0,
-                duration: 1,
-                ease: 'power3.out'
-            }, '-=0.5')
-            .from('.hero-subtitle', {
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                ease: 'power3.out'
-            }, '-=0.6')
-            .from('.hero-buttons .btn', {
-                y: 20,
-                opacity: 0,
-                duration: 0.6,
-                stagger: 0.15,
-                ease: 'power3.out'
-            }, '-=0.4')
-            .from('.hero-stat', {
-                y: 30,
-                opacity: 0,
-                duration: 0.6,
-                stagger: 0.1,
-                ease: 'power3.out'
-            }, '-=0.3');
-
-        // Animate stat numbers
-        document.querySelectorAll('.hero-stat-value').forEach(stat => {
-            const text = stat.textContent;
-            const match = text.match(/(\d+)/);
-
-            if (match) {
-                const number = parseInt(match[1]);
-                const prefix = text.replace(/\d+.*/, '');
-                const suffix = text.replace(/.*\d+/, '');
-
-                let current = { value: 0 };
-
-                gsap.to(current, {
-                    value: number,
-                    duration: 2,
-                    delay: 1.5,
-                    ease: 'power2.out',
-                    onUpdate: () => {
-                        stat.textContent = prefix + Math.round(current.value) + suffix;
-                    }
-                });
+                clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)'
+            },
+            {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    end: "bottom 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 0,
+                opacity: 1,
+                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                duration: 1.2,
+                ease: "power4.out"
             }
-        });
-    }
-
-    // ========================================
-    // SCROLL REVEAL ANIMATIONS
-    // ========================================
-
-    // Section titles
-    gsap.utils.toArray('.section-title').forEach(title => {
-        gsap.from(title, {
-            scrollTrigger: {
-                trigger: title,
-                start: 'top 85%',
-                toggleActions: 'play none none reverse'
-            },
-            y: 60,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        });
+        );
     });
 
-    // Section subtitles
-    gsap.utils.toArray('.section-subtitle').forEach(subtitle => {
-        gsap.from(subtitle, {
-            scrollTrigger: {
-                trigger: subtitle,
-                start: 'top 85%',
-                toggleActions: 'play none none reverse'
-            },
-            y: 40,
-            opacity: 0,
-            duration: 0.8,
-            delay: 0.2,
-            ease: 'power3.out'
-        });
-    });
+    // ========================================
+    // PARALLAX EFFECT
+    // ========================================
+    const parallaxElements = document.querySelectorAll('[data-speed]');
 
-    // Benefit cards with stagger
-    const benefitCards = gsap.utils.toArray('.benefit-card');
-    if (benefitCards.length) {
-        gsap.from(benefitCards, {
-            scrollTrigger: {
-                trigger: '.benefits-grid',
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            },
-            y: 80,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.15,
-            ease: 'power3.out'
-        });
-    }
-
-    // ========================================
-    // CTA SECTION ANIMATION
-    // ========================================
-    const ctaCard = document.querySelector('.cta-card');
-    if (ctaCard) {
-        gsap.from(ctaCard, {
-            scrollTrigger: {
-                trigger: ctaCard,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            },
-            scale: 0.9,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out'
-        });
-    }
-
-    // ========================================
-    // GENERIC PARALLAX (DATA-SPEED)
-    // ========================================
-    gsap.utils.toArray('[data-speed]').forEach(el => {
-        const speed = parseFloat(el.getAttribute('data-speed'));
+    parallaxElements.forEach(el => {
+        const speed = el.getAttribute('data-speed');
         gsap.to(el, {
-            y: (i, target) => ScrollTrigger.maxScroll(window) * speed * 0.1,
-            ease: 'none',
+            y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed,
+            ease: "none",
             scrollTrigger: {
-                trigger: el,
-                start: 'top bottom',
-                end: 'bottom top',
+                trigger: document.body,
+                start: "top top",
+                end: "bottom bottom",
                 scrub: 0
             }
         });
     });
 
     // ========================================
-    // PARALLAX BACKGROUNDS
+    // IMAGE REVEAL (Scale Up)
     // ========================================
-    // ========================================
-    // 3D PARALLAX MULTI-LAYER SYSTEM
-    // ========================================
+    const revealImages = document.querySelectorAll('.card, .benefit-card');
 
-    // Layer 1 (Deepest): Gradients move VERY slowly (Far distance)
-    gsap.to('.bg-gradient-1', {
-        scrollTrigger: {
-            trigger: 'body',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1
-        },
-        y: 300,  // Move down slowly
-        x: 50,
-        scale: 1.1, // Slight zoom for depth
-        ease: 'none'
-    });
-
-    gsap.to('.bg-gradient-2', {
-        scrollTrigger: {
-            trigger: 'body',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1
-        },
-        y: -200, // Move up slowly
-        x: -50,
-        scale: 1.2,
-        ease: 'none'
-    });
-
-    // Layer 2 (Mid): Fluid/Particles (Middle distance)
-    const fluidCanvas = document.querySelector('#fluid-canvas');
-    if (fluidCanvas) {
-        gsap.to(fluidCanvas, {
-            scrollTrigger: {
-                trigger: 'body',
-                start: 'top top', // Start immediately
-                end: 'bottom bottom',
-                scrub: 0.5 // More responsive scrubbing
-            },
-            y: 100, // Moves faster than background
-            ease: 'none'
-        });
-    }
-
-    // Layer 3 (Foreground): Content is handled by native scroll
-    // But we add a subtle parallax to the grid to separate it from bg
-    gsap.to('.bg-grid', {
-        scrollTrigger: {
-            trigger: 'body',
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1
-        },
-        y: 50, // Almost static, anchors the scene
-        ease: 'none'
-    });
-
-    // ========================================
-    // TEXT GRADIENT ANIMATION
-    // ========================================
-    gsap.utils.toArray('.text-gradient').forEach(text => {
-        gsap.to(text, {
-            backgroundPosition: '200% center',
-            duration: 3,
-            repeat: -1,
-            ease: 'linear'
-        });
-    });
-
-    // ========================================
-    // FOOTER ANIMATION
-    // ========================================
-    const footer = document.querySelector('.footer');
-    if (footer) {
-        const footerBrand = document.querySelector('.footer-brand');
-        const footerColumns = document.querySelectorAll('.footer-column');
-
-        if (footerBrand) {
-            gsap.from(footerBrand, {
-                scrollTrigger: {
-                    trigger: footer,
-                    start: 'top 90%',
-                    toggleActions: 'play none none reverse'
-                },
-                x: -50,
-                opacity: 0,
+    revealImages.forEach(img => {
+        gsap.fromTo(img,
+            { scale: 0.95, opacity: 0 },
+            {
+                scale: 1,
+                opacity: 1,
                 duration: 0.8,
-                ease: 'power3.out'
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: img,
+                    start: "top 90%"
+                }
+            }
+        );
+    });
+
+    console.log('✨ GSAP Premium Effects Initialized');
+
+
+    // Animate stat numbers
+    document.querySelectorAll('.hero-stat-value').forEach(stat => {
+        const text = stat.textContent;
+        const match = text.match(/(\d+)/);
+
+        if (match) {
+            const number = parseInt(match[1]);
+            const prefix = text.replace(/\d+.*/, '');
+            const suffix = text.replace(/.*\d+/, '');
+
+            let current = { value: 0 };
+
+            gsap.to(current, {
+                value: number,
+                duration: 2,
+                delay: 1.5,
+                ease: 'power2.out',
+                onUpdate: () => {
+                    stat.textContent = prefix + Math.round(current.value) + suffix;
+                }
             });
         }
+    });
+}
 
-        if (footerColumns.length > 0) {
-            gsap.from(footerColumns, {
-                scrollTrigger: {
-                    trigger: footer,
-                    start: 'top 90%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
+// ========================================
+// SCROLL REVEAL ANIMATIONS
+// ========================================
+
+// Section titles
+gsap.utils.toArray('.section-title').forEach(title => {
+    gsap.from(title, {
+        scrollTrigger: {
+            trigger: title,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+});
+
+// Section subtitles
+gsap.utils.toArray('.section-subtitle').forEach(subtitle => {
+    gsap.from(subtitle, {
+        scrollTrigger: {
+            trigger: subtitle,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.2,
+        ease: 'power3.out'
+    });
+});
+
+// Benefit cards with stagger
+const benefitCards = gsap.utils.toArray('.benefit-card');
+if (benefitCards.length) {
+    gsap.from(benefitCards, {
+        scrollTrigger: {
+            trigger: '.benefits-grid',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 80,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out'
+    });
+}
+
+// ========================================
+// CTA SECTION ANIMATION
+// ========================================
+const ctaCard = document.querySelector('.cta-card');
+if (ctaCard) {
+    gsap.from(ctaCard, {
+        scrollTrigger: {
+            trigger: ctaCard,
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out'
+    });
+}
+
+// ========================================
+// GENERIC PARALLAX (DATA-SPEED)
+// ========================================
+gsap.utils.toArray('[data-speed]').forEach(el => {
+    const speed = parseFloat(el.getAttribute('data-speed'));
+    gsap.to(el, {
+        y: (i, target) => ScrollTrigger.maxScroll(window) * speed * 0.1,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: el,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 0
         }
-    }
+    });
+});
 
-    // ========================================
-    // SMOOTH SCROLL PROGRESS
-    // ========================================
-    const progressBar = document.querySelector('.scroll-progress');
-    if (progressBar) {
-        gsap.to(progressBar, {
+// ========================================
+// PARALLAX BACKGROUNDS
+// ========================================
+// ========================================
+// 3D PARALLAX MULTI-LAYER SYSTEM
+// ========================================
+
+// Layer 1 (Deepest): Gradients move VERY slowly (Far distance)
+gsap.to('.bg-gradient-1', {
+    scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1
+    },
+    y: 300,  // Move down slowly
+    x: 50,
+    scale: 1.1, // Slight zoom for depth
+    ease: 'none'
+});
+
+gsap.to('.bg-gradient-2', {
+    scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1
+    },
+    y: -200, // Move up slowly
+    x: -50,
+    scale: 1.2,
+    ease: 'none'
+});
+
+// Layer 2 (Mid): Fluid/Particles (Middle distance)
+const fluidCanvas = document.querySelector('#fluid-canvas');
+if (fluidCanvas) {
+    gsap.to(fluidCanvas, {
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top', // Start immediately
+            end: 'bottom bottom',
+            scrub: 0.5 // More responsive scrubbing
+        },
+        y: 100, // Moves faster than background
+        ease: 'none'
+    });
+}
+
+// Layer 3 (Foreground): Content is handled by native scroll
+// But we add a subtle parallax to the grid to separate it from bg
+gsap.to('.bg-grid', {
+    scrollTrigger: {
+        trigger: 'body',
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 1
+    },
+    y: 50, // Almost static, anchors the scene
+    ease: 'none'
+});
+
+// ========================================
+// TEXT GRADIENT ANIMATION
+// ========================================
+gsap.utils.toArray('.text-gradient').forEach(text => {
+    gsap.to(text, {
+        backgroundPosition: '200% center',
+        duration: 3,
+        repeat: -1,
+        ease: 'linear'
+    });
+});
+
+// ========================================
+// FOOTER ANIMATION
+// ========================================
+const footer = document.querySelector('.footer');
+if (footer) {
+    const footerBrand = document.querySelector('.footer-brand');
+    const footerColumns = document.querySelectorAll('.footer-column');
+
+    if (footerBrand) {
+        gsap.from(footerBrand, {
             scrollTrigger: {
-                trigger: 'body',
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: 0.3
+                trigger: footer,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
             },
-            scaleX: 1,
-            transformOrigin: 'left center',
-            ease: 'none'
+            x: -50,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power3.out'
         });
     }
 
-    // ========================================
-    // REFRESH ON PAGE LOAD
-    // ========================================
-    // ScrollTrigger.refresh() calls can be useful here if images load late
-    ScrollTrigger.refresh();
+    if (footerColumns.length > 0) {
+        gsap.from(footerColumns, {
+            scrollTrigger: {
+                trigger: footer,
+                start: 'top 90%',
+                toggleActions: 'play none none reverse'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: 'power3.out'
+        });
+    }
+}
+
+// ========================================
+// SMOOTH SCROLL PROGRESS
+// ========================================
+const progressBar = document.querySelector('.scroll-progress');
+if (progressBar) {
+    gsap.to(progressBar, {
+        scrollTrigger: {
+            trigger: 'body',
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.3
+        },
+        scaleX: 1,
+        transformOrigin: 'left center',
+        ease: 'none'
+    });
+}
+
+// ========================================
+// REFRESH ON PAGE LOAD
+// ========================================
+// ScrollTrigger.refresh() calls can be useful here if images load late
+ScrollTrigger.refresh();
 }
 
 // Auto-init logic for the module

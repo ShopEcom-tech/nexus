@@ -128,7 +128,7 @@
                             <path d="m21 21-4.3-4.3"></path>
                         </svg>
                     </button>
-                    <a href="/pages/login.html" class="btn btn-primary">Se connecter</a>
+                    <a href="/pages/login.html" class="btn btn-primary">Espace Client</a>
                 </div>
 
                 <button class="navbar-toggle">
@@ -269,34 +269,11 @@
             </div>
         </section>
 
-        <!-- Subscription Benefits Section -->
-        <section class="section guarantee-section">
-            <div class="container">
-                <div class="card guarantee-card">
-                    <div class="guarantee-content">
-                        <div class="guarantee-icon">🚀</div>
-                        <h3 class="guarantee-title"><span data-i18n="home.guarantee.title">Inclus avec votre</span>
-                            <span class="text-gradient" data-i18n="home.guarantee.subscription">abonnement</span>
-                        </h3>
-                        <p class="guarantee-text">
-                            <span data-i18n="home.guarantee.desc1">On ne vous laisse pas seul après la livraison. Votre
-                                succès, c'est notre priorité.</span>
-                            <br><strong data-i18n="home.guarantee.descStrong">Un accompagnement complet pour maximiser
-                                vos résultats.</strong>
-                        </p>
-                        <div class="guarantee-badges">
-                            <span class="guarantee-badge" data-i18n="home.guarantee.badge1">✓ Support illimité</span>
-                            <span class="guarantee-badge" data-i18n="home.guarantee.badge2">✓ Optimisations
-                                gratuites</span>
-                            <span class="guarantee-badge" data-i18n="home.guarantee.badge3">✓ Mises à jour
-                                régulières</span>
-                            <span class="guarantee-badge" data-i18n="home.guarantee.badge4">✓ Conseils
-                                personnalisés</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- React Feature Explorer (Injected) -->
+        <section class="section">
+            <div id="react-features-root"></div>
         </section>
+        <script type="module" src="/src/react/homepage-widgets.tsx"></script>
 
         <!-- Trust Badges Section -->
         <section class="trust-section">
