@@ -1,0 +1,1 @@
+C:\Users\samet\OneDrive\Bureau\nexusv5\WEB-SHOP\nexusv5\wasm-effects\target\wasm32-unknown-unknown\release\libwasm_effects.rlib: C:\Users\samet\OneDrive\Bureau\nexusv5\WEB-SHOP\nexusv5\wasm-effects\src\lib.rs

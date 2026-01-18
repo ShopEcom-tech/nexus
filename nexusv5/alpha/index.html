@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA Meta Tags -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="theme-color" content="#6366f1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Alpha Academy" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="description"
+    content="Alpha Academy - Plateforme de formation premium en E-commerce, Marketing Digital, Crypto et Trading. Devenez un expert avec nos cours complets." />
+  <meta name="keywords"
+    content="formation, e-commerce, dropshipping, marketing digital, crypto, trading, cours en ligne" />
+  <meta name="author" content="Alpha Academy" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Alpha Academy - Formations Premium" />
+  <meta property="og:description"
+    content="Devenez un expert en Business, Crypto & Trading avec nos formations complètes." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alpha-academy.com" />
+  <meta property="og:image" content="/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Alpha Academy - Formations Premium" />
+  <meta name="twitter:description" content="Devenez un expert en Business, Crypto & Trading" />
+
+  <title>Alpha Academy - Formations Premium</title>
+  <script type="module" crossorigin src="./assets/index-BHyKrKGo.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-IxRrmAQt.css">
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <!-- Service Worker CLEANUP - Force unregister and clear cache -->
+  <script>
+    // CLEANUP: Unregister all service workers and clear caches
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (registrations) {
+        for (let registration of registrations) {
+          registration.unregister().then(function () {
+            console.log('SW unregistered:', registration.scope);
+          });
+        }
+      });
+      // Clear all caches
+      if ('caches' in window) {
+        caches.keys().then(function (names) {
+          for (let name of names) {
+            caches.delete(name);
+            console.log('Cache deleted:', name);
+          }
+        });
+      }
+    }
+  </script>
+</body>
+
+</html>

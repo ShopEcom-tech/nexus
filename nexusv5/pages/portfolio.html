@@ -1,0 +1,650 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez nos réalisations - Sites web et applications créés par Web Shop">
+    <title>Portfolio - Web Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css"><style>html.lenis, html.lenis body { height: auto; }.lenis.lenis-smooth { scroll-behavior: auto !important; }.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }.lenis.lenis-stopped { overflow: hidden; }.lenis.lenis-scrolling iframe { pointer-events: none; }</style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-outline"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="bg-gradient bg-gradient-1"></div>
+        <div class="bg-gradient bg-gradient-2"></div>
+        <div class="bg-grid"></div>
+        <canvas id="particles-canvas"></canvas>
+        <div id="three-container"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="../index.html" class="mobile-menu-link">Accueil</a>
+        <a href="offres.html" class="mobile-menu-link">Offres</a>
+        <a href="portfolio.html" class="mobile-menu-link active">Portfolio</a>
+        <a href="services.html" class="mobile-menu-link">Services</a>
+        <a href="abonnement.html" class="mobile-menu-link">Abonnements</a>
+        <a href="temoignages.html" class="mobile-menu-link">Témoignages</a>
+        <a href="contact.html" class="mobile-menu-link">Contact</a>
+        <div class="mobile-menu-cta">
+            <a href="login.html" class="btn btn-primary">Se connecter</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-inner">
+                <a href="../index.html" class="navbar-logo" style="display: flex; align-items: center; gap: 12px;">
+                    <img src="../images/webshop-logo.png" alt="Web Shop"
+                        style="width: 40px; height: 40px; object-fit: contain;">
+                    <span
+                        style="font-size: 20px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">Web
+                        Shop</span>
+                </a>
+
+                <div class="navbar-links">
+                    <a href="../index.html" class="navbar-link">Accueil</a>
+                    <a href="offres.html" class="navbar-link">Offres</a>
+                    <a href="portfolio.html" class="navbar-link active">Portfolio</a>
+                    <a href="services.html" class="navbar-link">Services</a>
+                    <a href="abonnement.html" class="navbar-link">Abonnements</a>
+                    <a href="temoignages.html" class="navbar-link">Témoignages</a>
+                    <a href="contact.html" class="navbar-link">Contact</a>
+                </div>
+
+                <div class="navbar-cta">
+                    <a href="login.html" class="btn btn-primary">Se connecter</a>
+                </div>
+
+                <button class="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+        <!-- Page Header -->
+        <header class="page-header">
+            <div class="container">
+                <span class="badge" data-i18n="portfolio.badge">🎨 Portfolio</span>
+                <h1 class="section-title">
+                    <span data-i18n="portfolio.title.start">Nos</span> <span class="text-gradient"
+                        data-i18n="portfolio.title.end">réalisations</span>
+                </h1>
+                <p class="section-subtitle" data-i18n="portfolio.subtitle">
+                    Découvrez quelques-uns des projets que nous avons réalisés pour nos clients satisfaits.
+                </p>
+            </div>
+        </header>
+
+        <!-- Portfolio Section -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+
+                <!-- Stats -->
+                <div class="testimonial-stats" style="margin-bottom: 60px;">
+                    <div class="card testimonial-stat">
+                        <div class="testimonial-stat-value">50+</div>
+                        <div class="testimonial-stat-label">Projets livrés</div>
+                    </div>
+                    <div class="card testimonial-stat">
+                        <div class="testimonial-stat-value">98%</div>
+                        <div class="testimonial-stat-label">Clients satisfaits</div>
+                    </div>
+                    <div class="card testimonial-stat">
+                        <div class="testimonial-stat-value">+127%</div>
+                        <div class="testimonial-stat-label">Trafic moyen</div>
+                    </div>
+                    <div class="card testimonial-stat">
+                        <div class="testimonial-stat-value">5 ans</div>
+                        <div class="testimonial-stat-label">D'expérience</div>
+                    </div>
+                </div>
+
+                <!-- Portfolio Grid -->
+
+                <!-- 🏆 FEATURED PROJECT: Alpha Academy -->
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <span class="badge"
+                        style="background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(236,72,153,0.2)); border-color: rgba(124,58,237,0.4); color: #c4b5fd;"
+                        data-i18n="portfolio.alpha.badge">
+                        🏆 Notre Création
+                    </span>
+                    <h2 class="section-title" style="margin-top: 20px;">
+                        <span class="text-gradient">Alpha Academy</span> - <span
+                            data-i18n="portfolio.alpha.titleSuffix">Notre SaaS</span>
+                    </h2>
+                    <p class="section-subtitle" data-i18n="portfolio.alpha.subtitle">
+                        Plateforme e-learning complète que nous avons développée de A à Z
+                    </p>
+                </div>
+
+                <div class="card"
+                    style="padding: 0; overflow: hidden; margin-bottom: 60px; border: 2px solid rgba(124,58,237,0.3); background: linear-gradient(135deg, rgba(124,58,237,0.08), rgba(236,72,153,0.05));">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+                        <!-- Left: Info -->
+                        <div style="padding: 40px;">
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+                                <span
+                                    style="background: rgba(124,58,237,0.2); color: #a78bfa; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">React</span>
+                                <span
+                                    style="background: rgba(34,197,94,0.2); color: #4ade80; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Supabase</span>
+                                <span
+                                    style="background: rgba(99,102,241,0.2); color: #818cf8; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Stripe</span>
+                                <span
+                                    style="background: rgba(236,72,153,0.2); color: #f472b6; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">Gemini
+                                    AI</span>
+                            </div>
+
+                            <h3 style="font-size: 28px; font-weight: 700; color: white; margin-bottom: 16px;"
+                                data-i18n="portfolio.alpha.cardTitle">
+                                Plateforme E-Learning Complète
+                            </h3>
+
+                            <p style="color: #a1a1aa; line-height: 1.8; margin-bottom: 24px;">
+                                <span data-i18n="portfolio.alpha.desc1">Alpha Academy est notre propre SaaS de formation
+                                    en ligne. Elle intègre un tuteur IA intelligent, des paiements sécurisés, un système
+                                    de progression et bien plus.</span>
+                                <strong style="color: #c4b5fd;" data-i18n="portfolio.alpha.desc2">Si nous pouvons créer
+                                    ça pour nous, imaginez ce que nous pouvons faire pour vous !</strong>
+                            </p>
+
+                            <div
+                                style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px;">
+                                <div
+                                    style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 24px; font-weight: 700; color: #a78bfa;">🤖</div>
+                                    <div style="font-size: 12px; color: #a1a1aa; margin-top: 4px;"
+                                        data-i18n="portfolio.alpha.stat1">IA Tutor</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 24px; font-weight: 700; color: #4ade80;">💳</div>
+                                    <div style="font-size: 12px; color: #a1a1aa; margin-top: 4px;"
+                                        data-i18n="portfolio.alpha.stat2">Paiements</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 16px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 24px; font-weight: 700; color: #f472b6;">📊</div>
+                                    <div style="font-size: 12px; color: #a1a1aa; margin-top: 4px;"
+                                        data-i18n="portfolio.alpha.stat3">Analytics</div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px;">
+                                <a href="../alpha/index.html" target="_blank" class="btn btn-primary"
+                                    data-i18n="portfolio.alpha.cta">Voir le site en direct</a>
+                            </div>
+                        </div>
+
+                        <!-- Right: Visual -->
+                        <div
+                            style="background: linear-gradient(135deg, #7c3aed, #db2777); display: flex; align-items: center; justify-content: center; min-height: 400px; position: relative; overflow: hidden;">
+                            <!-- Decorative elements -->
+                            <div
+                                style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%;">
+                            </div>
+                            <div
+                                style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.08); border-radius: 50%;">
+                            </div>
+
+                            <div style="text-align: center; z-index: 1; padding: 40px;">
+                                <img src="../images/alpha-academy-logo.jpg" alt="Alpha Academy Logo"
+                                    style="width: 200px; height: 200px; object-fit: contain; margin-bottom: 20px; border-radius: 20px;">
+                                <div style="font-size: 32px; font-weight: 800; color: white; letter-spacing: -1px;">
+                                    Alpha Academy</div>
+                                <div style="font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 8px;"
+                                    data-i18n="portfolio.alpha.slogan">Apprenez.
+                                    Évoluez. Réussissez.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 🎯 FEATURED PROJECT 2: EduCompare - Alternative Parcoursup -->
+                <div class="section-header" style="margin-bottom: 40px; margin-top: 60px;">
+                    <span class="badge"
+                        style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(16,185,129,0.2)); border-color: rgba(59,130,246,0.4); color: #93c5fd;"
+                        data-i18n="portfolio.edu.badge">
+                        🎯 Projet Partenaire
+                    </span>
+                    <h2 class="section-title" style="margin-top: 20px;">
+                        <span class="text-gradient"
+                            style="background: linear-gradient(135deg, #3b82f6, #10b981); -webkit-background-clip: text; background-clip: text;">EduCompare</span>
+                        - <span data-i18n="portfolio.edu.titleSuffix">L'Alternative à Parcoursup</span>
+                    </h2>
+                    <p class="section-subtitle" data-i18n="portfolio.edu.subtitle">
+                        La plateforme intelligente pour choisir son école en toute confiance
+                    </p>
+                </div>
+
+                <div class="card"
+                    style="padding: 0; overflow: hidden; margin-bottom: 60px; border: 2px solid rgba(59,130,246,0.3); background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(16,185,129,0.05));">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0;">
+                        <!-- Left: Visual -->
+                        <div
+                            style="background: linear-gradient(135deg, #3b82f6, #10b981); display: flex; align-items: center; justify-content: center; min-height: 400px; position: relative; overflow: hidden;">
+                            <div
+                                style="position: absolute; top: -50px; left: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%;">
+                            </div>
+                            <div
+                                style="position: absolute; bottom: -30px; right: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.08); border-radius: 50%;">
+                            </div>
+
+                            <div style="text-align: center; z-index: 1; padding: 40px;">
+                                <img src="../images/educompare-logo.png" alt="EduCompare Logo"
+                                    style="width: 180px; height: 180px; object-fit: contain; margin-bottom: 20px; border-radius: 20px;">
+                                <div style="font-size: 32px; font-weight: 800; color: white; letter-spacing: -1px;">
+                                    EduCompare</div>
+                                <div style="font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 8px;">Ton avenir.
+                                    Tes choix. Tes données.</div>
+                            </div>
+                        </div>
+
+                        <!-- Right: Info -->
+                        <div style="padding: 40px;">
+                            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px;">
+                                <span
+                                    style="background: rgba(59,130,246,0.2); color: #60a5fa; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">📊
+                                    Analytics</span>
+                                <span
+                                    style="background: rgba(16,185,129,0.2); color: #34d399; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">⭐
+                                    Vrais Avis</span>
+                                <span
+                                    style="background: rgba(249,115,22,0.2); color: #fb923c; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">📈
+                                    Taux de Réussite</span>
+                                <span
+                                    style="background: rgba(168,85,247,0.2); color: #c084fc; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">🔍
+                                    Comparateur</span>
+                            </div>
+
+                            <h3 style="font-size: 28px; font-weight: 700; color: white; margin-bottom: 16px;"
+                                data-i18n="portfolio.edu.cardTitle">
+                                Mieux que Parcoursup, vraiment.
+                            </h3>
+
+                            <p style="color: #a1a1aa; line-height: 1.8; margin-bottom: 24px;">
+                                <span data-i18n="portfolio.edu.desc1">Fini les choix à l'aveugle ! EduCompare te donne
+                                    accès aux</span>
+                                <strong style="color: #60a5fa;" data-i18n="portfolio.edu.descStrong1">vraies
+                                    statistiques</strong>
+                                <span data-i18n="portfolio.edu.desc2">des écoles : taux de réussite, avis d'anciens
+                                    étudiants, débouchés réels et salaires moyens.</span>
+                                <strong style="color: #34d399;" data-i18n="portfolio.edu.descStrong2">Fais des choix
+                                    éclairés pour ton avenir.</strong>
+                            </p>
+
+                            <div
+                                style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+                                <div
+                                    style="text-align: center; padding: 14px 8px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 20px; margin-bottom: 4px;">📊</div>
+                                    <div style="font-size: 11px; color: #a1a1aa;" data-i18n="portfolio.edu.stat1">
+                                        Analytics</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 14px 8px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 20px; margin-bottom: 4px;">⭐</div>
+                                    <div style="font-size: 11px; color: #a1a1aa;" data-i18n="portfolio.edu.stat2">Vrais
+                                        Avis</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 14px 8px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 20px; margin-bottom: 4px;">📈</div>
+                                    <div style="font-size: 11px; color: #a1a1aa;" data-i18n="portfolio.edu.stat3">Taux
+                                        Réussite</div>
+                                </div>
+                                <div
+                                    style="text-align: center; padding: 14px 8px; background: rgba(255,255,255,0.03); border-radius: 12px;">
+                                    <div style="font-size: 20px; margin-bottom: 4px;">💼</div>
+                                    <div style="font-size: 11px; color: #a1a1aa;" data-i18n="portfolio.edu.stat4">
+                                        Débouchés</div>
+                                </div>
+                            </div>
+
+                            <div
+                                style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 12px; padding: 16px; margin-bottom: 20px;">
+                                <div style="display: flex; align-items: center; gap: 12px;">
+                                    <span style="font-size: 24px;">🚀</span>
+                                    <div>
+                                        <div style="color: #34d399; font-weight: 600; font-size: 14px;"
+                                            data-i18n="portfolio.edu.partner">Développé par notre partenaire</div>
+                                        <div style="color: #a1a1aa; font-size: 13px;"
+                                            data-i18n="portfolio.edu.partnerDesc">Un outil créé par des étudiants, pour
+                                            des étudiants</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: flex; gap: 12px;">
+                                <a href="http://localhost:3000" target="_blank" class="btn btn-primary"
+                                    style="background: linear-gradient(135deg, #3b82f6, #10b981);"
+                                    data-i18n="portfolio.edu.cta">Voir le site en direct →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Other Projects -->
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <h3 style="font-size: 24px; font-weight: 600; color: white;" data-i18n="portfolio.clients.title">
+                        Projets Clients</h3>
+                </div>
+
+                <div class="portfolio-grid">
+
+                    <!-- Project 1 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-image">
+                            <span class="portfolio-image-placeholder">🍽️</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category" data-i18n="portfolio.cat.showcase">Site Vitrine</span>
+                            <h3 class="portfolio-title">RestauChic</h3>
+                            <p class="portfolio-description" data-i18n="portfolio.card1.desc">
+                                Restaurant gastronomique - Site de réservation en ligne avec menu interactif.
+                            </p>
+                            <div class="portfolio-stats">
+                                <div class="portfolio-stat">
+                                    📈 <span class="portfolio-stat-value" data-i18n="portfolio.card1.stat1">+200%</span>
+                                    <span data-i18n="portfolio.reservations">réservations</span>
+                                </div>
+                                <div class="portfolio-stat" data-i18n="portfolio.card1.stat2">
+                                    ⏱️ 3 semaines
+                                </div>
+                            </div>
+                            <a href="contact.html" class="portfolio-link">Voir le projet →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-image">
+                            <span class="portfolio-image-placeholder">🛍️</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category" data-i18n="portfolio.cat.ecommerce">E-Commerce</span>
+                            <h3 class="portfolio-title">E-Shop Plus</h3>
+                            <p class="portfolio-description" data-i18n="portfolio.card2.desc">
+                                Boutique mode en ligne avec paiement sécurisé et gestion des stocks.
+                            </p>
+                            <div class="portfolio-stats">
+                                <div class="portfolio-stat">
+                                    📈 <span class="portfolio-stat-value" data-i18n="portfolio.card2.stat1">+300%</span>
+                                    <span data-i18n="portfolio.sales">ventes</span>
+                                </div>
+                                <div class="portfolio-stat" data-i18n="portfolio.card2.stat2">
+                                    ⏱️ 6 semaines
+                                </div>
+                            </div>
+                            <a href="contact.html" class="portfolio-link">Voir le projet →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-image">
+                            <span class="portfolio-image-placeholder">💼</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category" data-i18n="portfolio.cat.corporate">Site Corporate</span>
+                            <h3 class="portfolio-title">TechStart</h3>
+                            <p class="portfolio-description" data-i18n="portfolio.card3.desc">
+                                Startup tech - Site vitrine moderne avec blog et espace recrutement.
+                            </p>
+                            <div class="portfolio-stats">
+                                <div class="portfolio-stat">
+                                    📈 <span class="portfolio-stat-value" data-i18n="portfolio.card3.stat1">+150%</span>
+                                    <span data-i18n="portfolio.applications">candidatures</span>
+                                </div>
+                                <div class="portfolio-stat" data-i18n="portfolio.card3.stat2">
+                                    ⏱️ 4 semaines
+                                </div>
+                            </div>
+                            <a href="contact.html" class="portfolio-link">Voir le projet →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-image">
+                            <span class="portfolio-image-placeholder">🏥</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Application Web</span>
+                            <h3 class="portfolio-title">MediCare Pro</h3>
+                            <p class="portfolio-description">
+                                Cabinet médical - Système de prise de rendez-vous en ligne et dossier patient.
+                            </p>
+                            <div class="portfolio-stats">
+                                <div class="portfolio-stat">
+                                    📈 <span class="portfolio-stat-value">-80%</span> appels
+                                </div>
+                                <div class="portfolio-stat">
+                                    ⏱️ 8 semaines
+                                </div>
+                            </div>
+                            <a href="contact.html" class="portfolio-link">Voir le projet →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-image">
+                            <span class="portfolio-image-placeholder">🎨</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Portfolio</span>
+                            <h3 class="portfolio-title">InnovaCorp</h3>
+                            <p class="portfolio-description">
+                                Agence créative - Portfolio design avec animations et galerie interactive.
+                            </p>
+                            <div class="portfolio-stats">
+                                <div class="portfolio-stat">
+                                    📈 <span class="portfolio-stat-value">+180%</span> leads
+                                </div>
+                                <div class="portfolio-stat">
+                                    ⏱️ 3 semaines
+                                </div>
+                            </div>
+                            <a href="contact.html" class="portfolio-link">Voir le projet →</a>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="card portfolio-card">
+                        <div class="portfolio-image">
+                            <span class="portfolio-image-placeholder">🏠</span>
+                        </div>
+                        <div class="portfolio-content">
+                            <span class="portfolio-category">Immobilier</span>
+                            <h3 class="portfolio-title">ImmoLux Paris</h3>
+                            <p class="portfolio-description">
+                                Agence immobilière - Plateforme avec recherche avancée et visite virtuelle.
+                            </p>
+                            <div class="portfolio-stats">
+                                <div class="portfolio-stat">
+                                    📈 <span class="portfolio-stat-value">+250%</span> demandes
+                                </div>
+                                <div class="portfolio-stat">
+                                    ⏱️ 5 semaines
+                                </div>
+                            </div>
+                            <a href="contact.html" class="portfolio-link">Voir le projet →</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- More Projects CTA -->
+                <!-- More Projects CTA -->
+                <div class="benefits-link" style="margin-top: 60px;">
+                    <p style="color: #a1a1aa; margin-bottom: 12px;" data-i18n="portfolio.cta.text">Vous voulez voir
+                        votre projet ici ?</p>
+                    <a href="contact.html" class="btn btn-primary" data-i18n="portfolio.cta.btn">Discutons de votre
+                        projet →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="trust-section">
+            <div class="container">
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <div class="trust-badge-icon">🔒</div>
+                        <div class="trust-badge-text">
+                            <div class="trust-badge-title" data-i18n="trust.secure.title">Paiement Sécurisé</div>
+                            <div class="trust-badge-subtitle" data-i18n="trust.secure.subtitle">SSL 256-bit</div>
+                        </div>
+                    </div>
+                    <div class="trust-badge">
+                        <div class="trust-badge-icon">✅</div>
+                        <div class="trust-badge-text">
+                            <div class="trust-badge-title" data-i18n="trust.satisfaction.title">Satisfaction Garantie
+                            </div>
+                            <div class="trust-badge-subtitle" data-i18n="trust.satisfaction.subtitle">30 jours remboursé
+                            </div>
+                        </div>
+                    </div>
+                    <div class="trust-badge">
+                        <div class="trust-badge-icon">🚀</div>
+                        <div class="trust-badge-text">
+                            <div class="trust-badge-title" data-i18n="trust.support.title">Support 24/7</div>
+                            <div class="trust-badge-subtitle" data-i18n="trust.support.subtitle">Réponse sous 24h</div>
+                        </div>
+                    </div>
+                    <div class="trust-badge">
+                        <div class="trust-badge-icon">⭐</div>
+                        <div class="trust-badge-text">
+                            <div class="trust-badge-title" data-i18n="trust.rating.title">Note 4.9/5</div>
+                            <div class="trust-badge-subtitle" data-i18n="trust.rating.subtitle">50+ clients satisfaits
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="card cta-card">
+                    <h2 class="section-title">
+                        <span data-i18n="cta.ready">Prêt à</span> <span class="text-gradient"
+                            data-i18n="cta.transform">transformer</span> <span data-i18n="cta.business">votre business
+                            ?</span>
+                    </h2>
+                    <p class="section-subtitle" data-i18n="cta.subtitle">
+                        Rejoignez nos clients satisfaits et boostez votre présence en ligne.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" data-i18n="hero.cta">Démarrer mon projet →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="../index.html" class="footer-logo"
+                            style="display: flex; align-items: center; gap: 12px;"><img src="../images/webshop-logo.png"
+                                alt="Web Shop" style="width: 36px; height: 36px; object-fit: contain;"><span
+                                style="font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Web
+                                Shop</span></a>
+                        <p class="footer-description" data-i18n="footer.desc">
+                            Agence web premium spécialisée dans la création de sites web modernes qui maximisent vos
+                            revenus.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/company/web-shop-agency" class="footer-social-link">in</a>
+                            <a href="https://twitter.com/webshopagency" class="footer-social-link">𝕏</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Services</h4>
+                        <a href="offres.html" class="footer-link">Site Vitrine</a>
+                        <a href="offres.html" class="footer-link">E-commerce</a>
+                        <a href="offres.html" class="footer-link">Sur-mesure</a>
+                        <a href="services.html" class="footer-link">Maintenance</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Entreprise</h4>
+                        <a href="a-propos.html" class="footer-link">À propos</a>
+                        <a href="portfolio.html" class="footer-link">Portfolio</a>
+                        <a href="temoignages.html" class="footer-link">Témoignages</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Légal</h4>
+                        <a href="mentions-legales.html" class="footer-link">Mentions légales</a>
+                        <a href="confidentialite.html" class="footer-link">Confidentialité</a>
+                        <a href="cgv.html" class="footer-link">CGV</a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2026 Web Shop. <span data-i18n="footer.rights">Tous droits
+                            réservés.</span></p>
+                    <p class="footer-credit"><span data-i18n="footer.madeWith">Conçu avec</span> <span>♥</span> <span
+                            data-i18n="footer.inFrance">en France</span></p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="../js/3d-logo.js"></script>
+
+    <!-- Lenis Library (Smooth Scroll) --><script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script><!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/three-effects.js" type="module"></script>
+    <script src="../js/gsap-animations.js"></script>
+
+    <!-- Language Switcher - Innovation #30 -->
+    <script src="../js/language-switcher.js"></script>
+
+    <!-- Theme Toggle - Innovation #20 -->
+    <script src="../js/theme-toggle.js"></script>
+<!-- Smooth Scroll Init --><script src="../js/smooth-scroll.js"></script><!-- 3D Tilt Effect --><script src="../js/tilt-3d.js"></script></body>
+
+</html>
+

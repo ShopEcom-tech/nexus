@@ -1,0 +1,526 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Finaliser votre commande - Web Shop">
+    <title>Paiement - Web Shop</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/style.css"><style>html.lenis, html.lenis body { height: auto; }.lenis.lenis-smooth { scroll-behavior: auto !important; }.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }.lenis.lenis-stopped { overflow: hidden; }.lenis.lenis-scrolling iframe { pointer-events: none; }</style>
+</head>
+
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-outline"></div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress"></div>
+
+    <!-- Background -->
+    <div class="background">
+        <div class="bg-gradient bg-gradient-1"></div>
+        <div class="bg-gradient bg-gradient-2"></div>
+        <div class="bg-grid"></div>
+        <canvas id="particles-canvas"></canvas>
+        <div id="three-container"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="../index.html" class="mobile-menu-link">Accueil</a>
+        <a href="offres.html" class="mobile-menu-link">Offres</a>
+        <a href="portfolio.html" class="mobile-menu-link">Portfolio</a>
+        <a href="services.html" class="mobile-menu-link">Services</a>
+        <a href="abonnement.html" class="mobile-menu-link">Abonnements</a>
+        <a href="temoignages.html" class="mobile-menu-link">TÃ©moignages</a>
+        <a href="contact.html" class="mobile-menu-link">Contact</a>
+        <div class="mobile-menu-cta">
+            <a href="cart.html" class="btn btn-primary">ðŸ›’ Panier</a>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-inner">
+                <a href="../index.html" class="navbar-logo" style="display: flex; align-items: center; gap: 12px;"><img
+                        src="../images/webshop-logo.png" alt="Web Shop"
+                        style="width: 40px; height: 40px; object-fit: contain;"><span
+                        style="font-size: 20px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">Web
+                        Shop</span></a>
+
+                <div class="navbar-links">
+                    <a href="../index.html" class="navbar-link">Accueil</a>
+                    <a href="offres.html" class="navbar-link">Offres</a>
+                    <a href="portfolio.html" class="navbar-link">Portfolio</a>
+                    <a href="services.html" class="navbar-link">Services</a>
+                    <a href="abonnement.html" class="navbar-link">Abonnements</a>
+                    <a href="temoignages.html" class="navbar-link">TÃ©moignages</a>
+                    <a href="contact.html" class="navbar-link">Contact</a>
+                </div>
+
+                <div class="navbar-cta">
+                    <a href="cart.html" class="btn btn-secondary cart-btn">
+                        ðŸ›’ <span class="cart-count">0</span>
+                    </a>
+                </div>
+
+                <button class="navbar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="page-content">
+
+        <!-- Progress Steps -->
+        <div class="checkout-progress">
+            <div class="container">
+                <div class="progress-steps">
+                    <div class="progress-step completed">
+                        <div class="progress-step-number">âœ“</div>
+                        <span class="progress-step-label">Panier</span>
+                    </div>
+                    <div class="progress-line completed"></div>
+                    <div class="progress-step active">
+                        <div class="progress-step-number">2</div>
+                        <span class="progress-step-label">Informations</span>
+                    </div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">
+                        <div class="progress-step-number">3</div>
+                        <span class="progress-step-label">Confirmation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Header -->
+        <header class="page-header" style="padding-top: 120px;">
+            <div class="container">
+                <span class="badge">ðŸ’³ Paiement</span>
+                <h1 class="section-title">
+                    Finaliser votre <span class="text-gradient">commande</span>
+                </h1>
+                <p class="section-subtitle">
+                    Renseignez vos informations pour procÃ©der au paiement sÃ©curisÃ©.
+                </p>
+            </div>
+        </header>
+
+        <!-- Checkout Section -->
+        <section class="section" style="padding-top: 0;">
+            <div class="container">
+
+                <!-- Security Banner -->
+                <div class="security-banner">
+                    <span class="security-banner-icon">ðŸ”’</span>
+                    <span class="security-banner-text">Paiement 100% sÃ©curisÃ© via Stripe â€¢ Cryptage SSL 256-bit â€¢ Vos
+                        donnÃ©es sont protÃ©gÃ©es</span>
+                </div>
+
+                <div class="checkout-layout">
+
+                    <!-- Checkout Form -->
+                    <div class="checkout-form-section">
+                        <form id="checkout-form" class="checkout-form">
+
+                            <!-- Personal Info -->
+                            <div class="card checkout-card">
+                                <h3 class="checkout-card-title">ðŸ‘¤ Informations personnelles</h3>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label" for="firstName">PrÃ©nom *</label>
+                                        <input type="text" id="firstName" name="firstName" class="form-input"
+                                            placeholder="Jean" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="lastName">Nom *</label>
+                                        <input type="text" id="lastName" name="lastName" class="form-input"
+                                            placeholder="Dupont" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="email">Email *</label>
+                                    <input type="email" id="email" name="email" class="form-input"
+                                        placeholder="jean.dupont@email.com" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="phone">TÃ©lÃ©phone *</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input"
+                                        placeholder="06 12 34 56 78" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="company">Entreprise (optionnel)</label>
+                                    <input type="text" id="company" name="company" class="form-input"
+                                        placeholder="Nom de votre entreprise">
+                                </div>
+                            </div>
+
+                            <!-- Billing Address -->
+                            <div class="card checkout-card">
+                                <h3 class="checkout-card-title">ðŸ“ Adresse de facturation</h3>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="address">Adresse *</label>
+                                    <input type="text" id="address" name="address" class="form-input"
+                                        placeholder="123 Rue Example" required>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label class="form-label" for="postalCode">Code postal *</label>
+                                        <input type="text" id="postalCode" name="postalCode" class="form-input"
+                                            placeholder="75001" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label" for="city">Ville *</label>
+                                        <input type="text" id="city" name="city" class="form-input" placeholder="Paris"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="country">Pays *</label>
+                                    <select id="country" name="country" class="form-select" required>
+                                        <option value="FR" selected>France</option>
+                                        <option value="BE">Belgique</option>
+                                        <option value="CH">Suisse</option>
+                                        <option value="LU">Luxembourg</option>
+                                        <option value="CA">Canada</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="card checkout-card">
+                                <h3 class="checkout-card-title">ðŸ’³ Mode de paiement</h3>
+
+                                <p class="payment-intro">Choisissez votre mode de paiement prÃ©fÃ©rÃ©. Tous les paiements
+                                    sont sÃ©curisÃ©s via Stripe.</p>
+
+                                <!-- Payment Methods Grid -->
+                                <div class="payment-methods-grid">
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#1A1F71">
+                                            <path d="M9.5 4.5L16 12l-6.5 7.5V15H4v-6h5.5V4.5z" />
+                                        </svg>
+                                        <span>Visa</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32">
+                                            <circle cx="8" cy="12" r="6" fill="#EB001B" />
+                                            <circle cx="16" cy="12" r="6" fill="#F79E1B" opacity="0.8" />
+                                        </svg>
+                                        <span>Mastercard</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#003087">
+                                            <path
+                                                d="M7.5 5h9c2.5 0 4.5 2 4.5 4.5S19 14 16.5 14h-9C5 14 3 12 3 9.5S5 5 7.5 5z" />
+                                            <path
+                                                d="M7.5 10h9c2.5 0 4.5 2 4.5 4.5S19 19 16.5 19h-9C5 19 3 17 3 14.5S5 10 7.5 10z"
+                                                fill="#009cde" />
+                                        </svg>
+                                        <span>PayPal</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#FFB3C7">
+                                            <rect x="2" y="6" width="20" height="12" rx="3" /><text x="12" y="14"
+                                                text-anchor="middle" font-size="6" fill="#0A0B09"
+                                                font-weight="bold">Klarna</text>
+                                        </svg>
+                                        <span>Klarna</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#000">
+                                            <path
+                                                d="M17.5 12.5c0-2.5-2-4.5-4.5-4.5h-1v3h1c.8 0 1.5.7 1.5 1.5s-.7 1.5-1.5 1.5h-1v3h1c2.5 0 4.5-2 4.5-4.5z" />
+                                            <path d="M8.5 8h-2v8h2V8z" />
+                                        </svg>
+                                        <span>Apple Pay</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32">
+                                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"
+                                                fill="#4285F4" />
+                                            <path d="M12 6c-3.3 0-6 2.7-6 6s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6z"
+                                                fill="#fff" />
+                                            <path d="M12 8c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4z"
+                                                fill="#34A853" />
+                                        </svg>
+                                        <span>Google Pay</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#2566AF">
+                                            <rect x="3" y="7" width="18" height="10" rx="2" />
+                                            <path d="M7 12h10" stroke="#fff" stroke-width="2" />
+                                        </svg>
+                                        <span>SEPA</span>
+                                    </div>
+                                    <div class="payment-method-badge">
+                                        <svg viewBox="0 0 24 24" width="32" height="32" fill="#016FD0">
+                                            <rect x="2" y="6" width="20" height="12" rx="2" /><text x="12" y="14"
+                                                text-anchor="middle" font-size="5" fill="#fff"
+                                                font-weight="bold">AMEX</text>
+                                        </svg>
+                                        <span>Amex</span>
+                                    </div>
+                                </div>
+
+                                <div class="payment-note">
+                                    <span class="payment-note-icon">ðŸ”’</span>
+                                    <p>Vous serez redirigÃ© vers Stripe pour finaliser votre paiement en toute sÃ©curitÃ©.
+                                        Choisissez votre mÃ©thode de paiement prÃ©fÃ©rÃ©e sur la page Stripe.</p>
+                                </div>
+
+                                <input type="hidden" name="paymentMethod" value="stripe_checkout">
+                            </div>
+
+                            <!-- Additional Info -->
+                            <div class="card checkout-card">
+                                <h3 class="checkout-card-title">ðŸ“ Informations complÃ©mentaires</h3>
+
+                                <div class="form-group">
+                                    <label class="form-label" for="projectDetails">DÃ©crivez votre projet
+                                        (optionnel)</label>
+                                    <textarea id="projectDetails" name="projectDetails" class="form-textarea"
+                                        placeholder="Parlez-nous de votre projet, vos besoins spÃ©cifiques, votre calendrier..."></textarea>
+                                </div>
+
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <label for="newsletter">Je souhaite recevoir les actualitÃ©s et offres
+                                        spÃ©ciales</label>
+                                </div>
+
+                                <div class="form-checkbox">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <label for="terms">J'accepte les <a href="#" class="link-purple">Conditions
+                                            GÃ©nÃ©rales de Vente</a> *</label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button (Mobile) -->
+                            <div class="checkout-submit-mobile">
+                                <button type="submit" class="btn btn-primary btn-checkout-submit">
+                                    <span class="btn-text">Confirmer et payer</span>
+                                    <span class="btn-total" id="mobile-total">0 â‚¬</span>
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- Order Summary Sidebar -->
+                    <div class="checkout-sidebar">
+                        <div class="card checkout-summary-card sticky">
+                            <h3 class="checkout-summary-title">ðŸ“‹ RÃ©capitulatif</h3>
+
+                            <!-- Order Items -->
+                            <div id="checkout-items" class="checkout-items">
+                                <!-- Items will be inserted here by JS -->
+                            </div>
+
+                            <!-- Promo Code -->
+                            <div class="promo-code-section">
+                                <div class="promo-code-input">
+                                    <input type="text" id="promoCode" class="form-input" placeholder="Code promo">
+                                    <button type="button" id="applyPromo"
+                                        class="btn btn-secondary btn-small">Appliquer</button>
+                                </div>
+                                <p id="promo-message" class="promo-message"></p>
+                            </div>
+
+                            <!-- Summary Details -->
+                            <div class="checkout-summary-details">
+                                <div class="summary-row">
+                                    <span>Sous-total</span>
+                                    <span id="checkout-subtotal">0 â‚¬</span>
+                                </div>
+                                <div class="summary-row" id="discount-row" style="display: none;">
+                                    <span>RÃ©duction</span>
+                                    <span id="checkout-discount" class="discount-value">-0 â‚¬</span>
+                                </div>
+                                <div class="summary-row">
+                                    <span>TVA (20%)</span>
+                                    <span id="checkout-tax">0 â‚¬</span>
+                                </div>
+                                <div class="summary-row summary-total">
+                                    <span>Total TTC</span>
+                                    <span id="checkout-total" class="text-gradient">0 â‚¬</span>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button (Desktop) -->
+                            <button type="submit" form="checkout-form" class="btn btn-primary btn-checkout-submit">
+                                Confirmer et payer â†’
+                            </button>
+
+                            <!-- Trust Badges - Enhanced -->
+                            <div class="trust-badges">
+                                <!-- Stripe Badge -->
+                                <div class="trust-badge trust-badge-stripe">
+                                    <svg class="stripe-logo" viewBox="0 0 60 25" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M60 12.94C60 8.672 57.918 5.262 53.846 5.262C49.762 5.262 47.313 8.672 47.313 12.91C47.313 17.865 50.22 20.588 54.389 20.588C56.423 20.588 57.987 20.098 59.162 19.393V16.013C57.987 16.656 56.627 17.053 54.903 17.053C53.21 17.053 51.712 16.44 51.518 14.349H59.957C59.957 14.103 60 13.32 60 12.94ZM51.455 11.307C51.455 9.307 52.628 8.549 53.827 8.549C54.996 8.549 56.106 9.307 56.106 11.307H51.455ZM40.961 5.262C39.236 5.262 38.138 6.057 37.534 6.607L37.278 5.507H33.639V24.605L37.627 23.757L37.639 19.424C38.256 19.882 39.168 20.588 40.93 20.588C44.389 20.588 47.52 17.773 47.52 12.786C47.508 8.243 44.341 5.262 40.961 5.262ZM39.982 16.898C38.793 16.898 38.088 16.44 37.639 15.889L37.627 10.014C38.113 9.401 38.831 8.952 39.982 8.952C41.812 8.952 43.08 10.973 43.08 12.91C43.08 14.897 41.825 16.898 39.982 16.898ZM28.355 4.312L32.362 3.452V0L28.355 0.848V4.312ZM28.355 5.507H32.362V20.343H28.355V5.507ZM24.092 6.72L23.822 5.507H20.247V20.343H24.234V9.77C25.158 8.584 26.694 8.797 27.168 8.952V5.507C26.669 5.332 24.997 5.05 24.092 6.72ZM15.846 1.94L11.959 2.775L11.947 16.196C11.947 18.727 13.819 20.6 16.337 20.6C17.714 20.6 18.737 20.355 19.303 20.068V16.626C18.75 16.851 15.833 17.742 15.833 15.211V9.06H19.303V5.507H15.833L15.846 1.94ZM4.006 10.014C4.006 9.215 4.642 8.889 5.715 8.889C7.239 8.889 9.149 9.354 10.673 10.168V6.14C9.019 5.444 7.377 5.17 5.715 5.17C2.286 5.17 0 6.997 0 9.917C0 14.472 6.249 13.703 6.249 15.674C6.249 16.624 5.447 16.95 4.317 16.95C2.66 16.95 0.556 16.28 0 15.706V19.795C1.037 20.283 2.704 20.588 4.317 20.588C7.828 20.588 10.256 18.821 10.256 15.857C10.237 10.973 4.006 11.898 4.006 10.014Z"
+                                            fill="#635BFF" />
+                                    </svg>
+                                    <span class="trust-badge-text">Paiement sÃ©curisÃ©</span>
+                                </div>
+
+                                <!-- SSL Badge -->
+                                <div class="trust-badge trust-badge-ssl">
+                                    <div class="trust-badge-icon">ðŸ”</div>
+                                    <span class="trust-badge-text">SSL 256-bit</span>
+                                </div>
+
+                                <!-- Guarantee Badge -->
+                                <div class="trust-badge trust-badge-guarantee">
+                                    <div class="trust-badge-icon">âœ“</div>
+                                    <span class="trust-badge-text">Satisfait ou remboursÃ©</span>
+                                </div>
+                            </div>
+
+                            <!-- Payment Partners -->
+                            <div class="payment-partners">
+                                <span class="payment-partners-label">AcceptÃ©s :</span>
+                                <div class="payment-partners-icons">
+                                    <span class="partner-icon">ðŸ’³</span>
+                                    <span class="partner-icon">ðŸ¦</span>
+                                    <span class="partner-icon">ðŸ“±</span>
+                                </div>
+                            </div>
+
+                            <!-- Back to Cart -->
+                            <a href="cart.html" class="back-to-cart">â† Retour au panier</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="../index.html" class="footer-logo"
+                            style="display: flex; align-items: center; gap: 12px;"><img src="../images/webshop-logo.png"
+                                alt="Web Shop" style="width: 36px; height: 36px; object-fit: contain;"><span
+                                style="font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Web
+                                Shop</span></a>
+                        <p class="footer-description">
+                            Agence web premium spÃ©cialisÃ©e dans la crÃ©ation de sites web modernes qui maximisent vos
+                            revenus.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/feed/" class="footer-social-link">in</a>
+                            <a href="https://x.com/?lang=fr" class="footer-social-link">ð•</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Services</h4>
+                        <a href="offres.html" class="footer-link">Site Vitrine</a>
+                        <a href="offres.html" class="footer-link">E-commerce</a>
+                        <a href="offres.html" class="footer-link">Sur-mesure</a>
+                        <a href="services.html" class="footer-link">Maintenance</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Entreprise</h4>
+                        <a href="../index.html" class="footer-link">Ã€ propos</a>
+                        <a href="temoignages.html" class="footer-link">TÃ©moignages</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">LÃ©gal</h4>
+                        <a href="mentions-legales.html" class="footer-link">Mentions lÃ©gales</a>
+                        <a href="confidentialite.html" class="footer-link">ConfidentialitÃ©</a>
+                        <a href="cgv.html" class="footer-link">CGV</a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copyright">Â© 2026 Web Shop. Tous droits rÃ©servÃ©s.</p>
+                    <p class="footer-credit">ConÃ§u avec <span>â™¥</span> en France</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal" style="display: none;">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-icon">âœ…</div>
+            <h2 class="modal-title">Commande confirmÃ©e !</h2>
+            <p class="modal-text">Merci pour votre confiance. Vous allez recevoir un email de confirmation avec tous les
+                dÃ©tails de votre commande.</p>
+            <p class="modal-order-id">NÂ° de commande : <span id="order-id">WS-2026-XXXX</span></p>
+            <a href="../index.html" class="btn btn-primary">Retour Ã  l'accueil</a>
+        </div>
+    </div>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="../js/3d-logo.js"></script>
+
+    <!-- Lenis Library (Smooth Scroll) --><script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script><!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/three-effects.js" type="module"></script>
+    <script src="../js/gsap-animations.js"></script>
+    <script src="../js/cart.js"></script>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <!-- Stripe -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="../js/stripe-config.js"></script>
+
+    <script src="../js/checkout.js"></script>
+
+    <!-- Language Switcher - Innovation #30 -->
+    <script src="../js/language-switcher.js"></script>
+
+    <!-- Theme Toggle - Innovation #20 -->
+    <script src="../js/theme-toggle.js"></script>
+<!-- Smooth Scroll Init --><script src="../js/smooth-scroll.js"></script><!-- 3D Tilt Effect --><script src="../js/tilt-3d.js"></script></body>
+
+</html>
+

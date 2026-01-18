@@ -1,0 +1,16 @@
+{
+  "name": "wasm-effects",
+  "type": "module",
+  "description": "High-performance WebAssembly particle system for Web Shop",
+  "version": "0.1.0",
+  "files": [
+    "wasm_effects_bg.wasm",
+    "wasm_effects.js",
+    "wasm_effects.d.ts"
+  ],
+  "main": "wasm_effects.js",
+  "types": "wasm_effects.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
