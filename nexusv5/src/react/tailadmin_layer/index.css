@@ -5,7 +5,7 @@
 @source "../../..";
 /* Scan root just in case */
 
-@custom-variant dark (&:is(.dark *));
+/* @custom-variant dark (&:is(.dark *)); - Removed to fallback to default */
 
 @theme {
   --font-*: initial;
@@ -200,19 +200,51 @@
 }
 
 @utility menu-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-50 text-brand-500;
+
+  &:is(.dark *) {
+    @apply bg-brand-500/[0.12] text-brand-400;
+  }
 }
 
 @utility menu-item-inactive {
-  @apply text-gray-700 hover:bg-gray-100 group-hover:text-gray-700 dark:text-gray-300 dark:hover:bg-white/5 dark:hover:text-gray-300;
+  @apply text-gray-700;
+
+  &:hover {
+    @apply bg-gray-100;
+  }
+
+  .group:hover & {
+    @apply text-gray-700;
+  }
+
+  &:is(.dark *) {
+    @apply text-gray-300;
+
+    &:hover {
+      @apply bg-white/5 text-gray-300;
+    }
+  }
 }
 
 @utility menu-item-icon {
-  @apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400;
+  @apply text-gray-500;
+
+  .group:hover & {
+    @apply text-gray-700;
+  }
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+  }
 }
 
 @utility menu-item-icon-active {
-  @apply text-brand-500 dark:text-brand-400;
+  @apply text-brand-500;
+
+  &:is(.dark *) {
+    @apply text-brand-400;
+  }
 }
 
 @utility menu-item-icon-size {
@@ -222,7 +254,19 @@
 }
 
 @utility menu-item-icon-inactive {
-  @apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300;
+  @apply text-gray-500;
+
+  .group:hover & {
+    @apply text-gray-700;
+  }
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+
+    .group:hover & {
+      @apply text-gray-300;
+    }
+  }
 }
 
 @utility menu-item-arrow {
@@ -230,11 +274,27 @@
 }
 
 @utility menu-item-arrow-active {
-  @apply rotate-180 text-brand-500 dark:text-brand-400;
+  @apply rotate-180 text-brand-500;
+
+  &:is(.dark *) {
+    @apply text-brand-400;
+  }
 }
 
 @utility menu-item-arrow-inactive {
-  @apply text-gray-500 group-hover:text-gray-700 dark:text-gray-400 dark:group-hover:text-gray-300;
+  @apply text-gray-500;
+
+  .group:hover & {
+    @apply text-gray-700;
+  }
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+
+    .group:hover & {
+      @apply text-gray-300;
+    }
+  }
 }
 
 @utility menu-dropdown-item {
@@ -242,35 +302,91 @@
 }
 
 @utility menu-dropdown-item-active {
-  @apply bg-brand-50 text-brand-500 dark:bg-brand-500/[0.12] dark:text-brand-400;
+  @apply bg-brand-50 text-brand-500;
+
+  &:is(.dark *) {
+    @apply bg-brand-500/[0.12] text-brand-400;
+  }
 }
 
 @utility menu-dropdown-item-inactive {
-  @apply text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-white/5;
+  @apply text-gray-700;
+
+  &:hover {
+    @apply bg-gray-100;
+  }
+
+  &:is(.dark *) {
+    @apply text-gray-300;
+
+    &:hover {
+      @apply bg-white/5;
+    }
+  }
 }
 
 @utility menu-dropdown-badge {
-  @apply text-success-600 dark:text-success-500 block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase;
+  @apply text-success-600 block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase;
+
+  &:is(.dark *) {
+    @apply text-success-500;
+  }
 }
 
 @utility menu-dropdown-badge-active {
-  @apply bg-success-100 dark:bg-success-500/20;
+  @apply bg-success-100;
+
+  &:is(.dark *) {
+    @apply bg-success-500/20;
+  }
 }
 
 @utility menu-dropdown-badge-inactive {
-  @apply bg-success-50 group-hover:bg-success-100 dark:bg-success-500/15 dark:group-hover:bg-success-500/20;
+  @apply bg-success-50;
+
+  .group:hover & {
+    @apply bg-success-100;
+  }
+
+  &:is(.dark *) {
+    @apply bg-success-500/15;
+
+    .group:hover & {
+      @apply bg-success-500/20;
+    }
+  }
 }
 
 @utility menu-dropdown-badge-pro {
-  @apply text-brand-600 dark:text-brand-500 block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase;
+  @apply text-brand-600 block rounded-full px-2.5 py-0.5 text-xs font-medium uppercase;
+
+  &:is(.dark *) {
+    @apply text-brand-500;
+  }
 }
 
 @utility menu-dropdown-badge-pro-active {
-  @apply bg-brand-100 dark:bg-brand-500/20;
+  @apply bg-brand-100;
+
+  &:is(.dark *) {
+    @apply bg-brand-500/20;
+  }
 }
 
 @utility menu-dropdown-badge-pro-inactive {
-  @apply bg-brand-50 group-hover:bg-brand-100 dark:bg-brand-500/15 dark:group-hover:bg-brand-500/20;
+  @apply bg-brand-50;
+
+  .group:hover & {
+    @apply bg-brand-100;
+  }
+
+  &:is(.dark *) {
+    @apply bg-brand-500/15;
+
+    .group:hover & {
+      @apply bg-brand-500/20;
+    }
+  }
 }
 
 @utility no-scrollbar {
@@ -296,7 +412,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    @apply bg-gray-200 rounded-full dark:bg-gray-700;
+    @apply bg-gray-200 rounded-full;
+
+    &:is(.dark *) {
+      @apply bg-gray-700;
+    }
   }
 }
 
@@ -326,15 +446,27 @@
 
 /* third-party libraries CSS */
 .apexcharts-legend-text {
-  @apply !text-gray-700 dark: !text-gray-400;
+  @apply !text-gray-700;
+
+  &:is(.dark *) {
+    @apply !text-gray-400;
+  }
 }
 
 .apexcharts-text {
-  @apply !fill-gray-700 dark: !fill-gray-400;
+  @apply !fill-gray-700;
+
+  &:is(.dark *) {
+    @apply !fill-gray-400;
+  }
 }
 
 .apexcharts-tooltip.apexcharts-theme-light {
-  @apply gap-1 !rounded-lg !border-gray-200 p-3 !shadow-theme-sm dark: !border-gray-800 dark: !bg-gray-900;
+  @apply gap-1 !rounded-lg !border-gray-200 p-3 !shadow-theme-sm;
+
+  &:is(.dark *) {
+    @apply !border-gray-800 !bg-gray-900;
+  }
 }
 
 .apexcharts-tooltip-marker {
@@ -344,7 +476,11 @@
 }
 
 .apexcharts-legend-text {
-  @apply !pl-5 !text-gray-700 dark: !text-gray-400;
+  @apply !pl-5 !text-gray-700;
+
+  &:is(.dark *) {
+    @apply !text-gray-400;
+  }
 }
 
 .apexcharts-tooltip-series-group {
@@ -356,11 +492,19 @@
 }
 
 .apexcharts-tooltip-title {
-  @apply !mb-0 !border-b-0 !bg-transparent !p-0 !text-[10px] !leading-4 !text-gray-800 dark: !text-white/90;
+  @apply !mb-0 !border-b-0 !bg-transparent !p-0 !text-[10px] !leading-4 !text-gray-800;
+
+  &:is(.dark *) {
+    @apply !text-white/90;
+  }
 }
 
 .apexcharts-tooltip-text {
-  @apply !text-theme-xs !text-gray-700 dark: !text-white/90;
+  @apply !text-theme-xs !text-gray-700;
+
+  &:is(.dark *) {
+    @apply !text-white/90;
+  }
 }
 
 .apexcharts-tooltip-text-y-value {
@@ -368,7 +512,11 @@
 }
 
 .apexcharts-gridline {
-  @apply !stroke-gray-100 dark: !stroke-gray-800;
+  @apply !stroke-gray-100;
+
+  &:is(.dark *) {
+    @apply !stroke-gray-800;
+  }
 }
 
 #chartTwo .apexcharts-datalabels-group {
@@ -376,11 +524,19 @@
 }
 
 #chartTwo .apexcharts-datalabels-group .apexcharts-text {
-  @apply !fill-gray-800 !font-semibold dark: !fill-white/90;
+  @apply !fill-gray-800 !font-semibold;
+
+  &:is(.dark *) {
+    @apply !fill-white/90;
+  }
 }
 
 #chartDarkStyle .apexcharts-datalabels-group .apexcharts-text {
-  @apply !fill-gray-800 !font-semibold dark: !fill-white/90;
+  @apply !fill-gray-800 !font-semibold;
+
+  &:is(.dark *) {
+    @apply !fill-white/90;
+  }
 }
 
 #chartSixteen .apexcharts-legend {
@@ -388,15 +544,37 @@
 }
 
 .jvectormap-container {
-  @apply !bg-gray-50 dark: !bg-gray-900;
+  @apply !bg-gray-50;
+
+  &:is(.dark *) {
+    @apply !bg-gray-900;
+  }
 }
 
-.jvectormap-region.jvectormap-element {
-  @apply !fill-gray-300 hover: !fill-brand-500 dark: !fill-gray-700 dark:hover: !fill-brand-500;
+@utility jvectormap-region {
+  &.jvectormap-element {
+    @apply !fill-gray-300;
+
+    &:hover {
+      @apply !fill-brand-500;
+    }
+
+    &:is(.dark *) {
+      @apply !fill-gray-700;
+
+      &:hover {
+        @apply !fill-brand-500;
+      }
+    }
+  }
 }
 
 .jvectormap-marker.jvectormap-element {
-  @apply !stroke-gray-200 dark: !stroke-gray-800;
+  @apply !stroke-gray-200;
+
+  &:is(.dark *) {
+    @apply !stroke-gray-800;
+  }
 }
 
 .jvectormap-tip {
@@ -415,12 +593,28 @@
 
 .stocks-slider-outer .swiper-button-next,
 .stocks-slider-outer .swiper-button-prev {
-  @apply !static mt-0 h-8 w-9 rounded-full border dark:hover:bg-white/[0.05] border-gray-200 !text-gray-700 transition hover:bg-gray-100 dark:border-white/[0.03] dark:bg-gray-800 dark: !text-gray-400 dark:hover: !text-white/90;
+  @apply !static mt-0 h-8 w-9 rounded-full border border-gray-200 !text-gray-700 transition;
+
+  &:hover {
+    @apply bg-gray-100;
+  }
+
+  &:is(.dark *) {
+    @apply border-white/[0.03] bg-gray-800 !text-gray-400;
+
+    &:hover {
+      @apply !text-white/90 bg-white/[0.05];
+    }
+  }
 }
 
 .stocks-slider-outer .swiper-button-next.swiper-button-disabled,
 .stocks-slider-outer .swiper-button-prev.swiper-button-disabled {
-  @apply bg-white opacity-50 dark:bg-gray-900;
+  @apply bg-white opacity-50;
+
+  &:is(.dark *) {
+    @apply bg-gray-900;
+  }
 }
 
 .stocks-slider-outer .swiper-button-next svg,
@@ -433,7 +627,11 @@
 }
 
 .flatpickr-calendar {
-  @apply mt-2 !bg-white !rounded-xl !p-5 !border !border-gray-200 dark: !border-white/5 !text-gray-500 dark: !bg-gray-dark dark: !text-gray-400 dark: !shadow-theme-xl 2xsm: !w-auto;
+  @apply mt-2 !bg-white !rounded-xl !p-5 !border !border-gray-200 !text-gray-500 2xsm: !w-auto;
+
+  &:is(.dark *) {
+    @apply !border-white/5 !bg-gray-dark !text-gray-400 !shadow-theme-xl;
+  }
 }
 
 .flatpickr-months .flatpickr-prev-month:hover svg,
@@ -452,7 +650,11 @@
 
 .flatpickr-current-month .cur-month,
 .flatpickr-current-month input.cur-year {
-  @apply !h-auto !pt-0 !text-lg !font-medium !text-gray-800 dark: !text-white/90;
+  @apply !h-auto !pt-0 !text-lg !font-medium !text-gray-800;
+
+  &:is(.dark *) {
+    @apply !text-white/90;
+  }
 }
 
 .flatpickr-prev-month,
@@ -465,11 +667,23 @@
 }
 
 .flatpickr-weekday {
-  @apply !text-theme-sm !font-medium !text-gray-500 dark: !text-gray-400 !bg-transparent;
+  @apply !text-theme-sm !font-medium !text-gray-500 !bg-transparent;
+
+  &:is(.dark *) {
+    @apply !text-gray-400;
+  }
 }
 
 .flatpickr-day {
-  @apply !flex !items-center !text-theme-sm !font-medium !text-gray-800 dark: !text-white/90 dark:hover: !border-gray-300 dark:hover: !bg-gray-900;
+  @apply !flex !items-center !text-theme-sm !font-medium !text-gray-800;
+
+  &:is(.dark *) {
+    @apply !text-white/90;
+
+    &:hover {
+      @apply !border-gray-300 !bg-gray-900;
+    }
+  }
 }
 
 .flatpickr-day.nextMonthDay,
@@ -495,7 +709,11 @@
 
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
-  @apply !top-7 dark: !fill-white dark: !text-white !bg-transparent;
+  @apply !top-7 !bg-transparent;
+
+  &:is(.dark *) {
+    @apply !fill-white !text-white;
+  }
 }
 
 .flatpickr-months .flatpickr-prev-month.flatpickr-prev-month,
@@ -514,11 +732,17 @@
 
 span.flatpickr-weekday,
 .flatpickr-months .flatpickr-month {
-  @apply dark: !fill-white dark: !text-white !bg-none;
+  @apply !bg-none;
+
+  &:is(.dark *) {
+    @apply !fill-white !text-white;
+  }
 }
 
 .flatpickr-rContainer {
-  @apply dark: !bg-gray-dark;
+  &:is(.dark *) {
+    @apply !bg-gray-dark;
+  }
 }
 
 .flatpickr-innerContainer {
@@ -531,7 +755,10 @@ span.flatpickr-weekday,
 
 .flatpickr-day.inRange {
   box-shadow: -5px 0 0 #f9fafb, 5px 0 0 #f9fafb !important;
-  @apply dark: !shadow-datepicker;
+
+  &:is(.dark *) {
+    @apply !shadow-datepicker;
+  }
 }
 
 .flatpickr-day.inRange,
@@ -546,14 +773,22 @@ span.flatpickr-weekday,
 .flatpickr-day:focus,
 .flatpickr-day.prevMonthDay:focus,
 .flatpickr-day.nextMonthDay:focus {
-  @apply !border-gray-50 !bg-gray-50 dark: !border-0 dark: !border-white/5 dark: !bg-white/5;
+  @apply !border-gray-50 !bg-gray-50;
+
+  &:is(.dark *) {
+    @apply !border-0 !border-white/5 !bg-white/5;
+  }
 }
 
 .flatpickr-day.selected,
 .flatpickr-day.startRange,
 .flatpickr-day.selected,
 .flatpickr-day.endRange {
-  @apply !text-white dark: !text-white;
+  @apply !text-white;
+
+  &:is(.dark *) {
+    @apply !text-white;
+  }
 }
 
 .flatpickr-day.selected,
@@ -575,7 +810,11 @@ span.flatpickr-weekday,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
   background: #465fff;
-  @apply !border-brand-500 !bg-brand-500 hover: !border-brand-500 hover: !bg-brand-500;
+  @apply !border-brand-500 !bg-brand-500;
+
+  &:hover {
+    @apply !border-brand-500 !bg-brand-500;
+  }
 }
 
 .flatpickr-day.selected.startRange+.endRange:not(:nth-child(7n + 1)),
@@ -588,7 +827,9 @@ span.flatpickr-weekday,
 .flatpickr-months .flatpickr-next-month svg,
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
-  @apply hover: !fill-none;
+  &:hover {
+    @apply !fill-none;
+  }
 }
 
 .flatpickr-months .flatpickr-prev-month:hover svg,
@@ -626,7 +867,31 @@ span.flatpickr-weekday,
 }
 
 .fc-button-group .fc-button {
-  @apply flex h-10 w-10 items-center justify-center !rounded-lg border border-gray-200 bg-transparent hover:border-gray-200 hover:bg-gray-50 focus:shadow-none active: !border-gray-200 active: !bg-transparent active: !shadow-none dark:border-gray-800 dark:hover:border-gray-800 dark:hover:bg-gray-900 dark:active: !border-gray-800;
+  @apply flex h-10 w-10 items-center justify-center !rounded-lg border border-gray-200 bg-transparent;
+
+  &:hover {
+    @apply border-gray-200 bg-gray-50;
+  }
+
+  &:focus {
+    @apply shadow-none;
+  }
+
+  &:active {
+    @apply !border-gray-200 !bg-transparent !shadow-none;
+  }
+
+  &:is(.dark *) {
+    @apply border-gray-800;
+
+    &:hover {
+      @apply border-gray-800 bg-gray-900;
+    }
+
+    &:active {
+      @apply !border-gray-800;
+    }
+  }
 }
 
 .fc-button-group .fc-button.fc-prev-button:before {
@@ -652,32 +917,72 @@ span.flatpickr-weekday,
 }
 
 .fc-addEventButton-button {
-  @apply !rounded-lg !border-0 !bg-brand-500 !px-4 !py-2.5 !text-sm !font-medium hover: !bg-brand-600 focus: !shadow-none;
+  @apply !rounded-lg !border-0 !bg-brand-500 !px-4 !py-2.5 !text-sm !font-medium;
+
+  &:hover {
+    @apply !bg-brand-600;
+  }
+
+  &:focus {
+    @apply !shadow-none;
+  }
 }
 
 .fc-toolbar-title {
-  @apply !text-lg !font-medium text-gray-800 dark:text-white/90;
+  @apply !text-lg !font-medium text-gray-800;
+
+  &:is(.dark *) {
+    @apply text-white/90;
+  }
 }
 
 .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:last-child {
-  @apply rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900;
+  @apply rounded-lg bg-gray-100 p-0.5;
+
+  &:is(.dark *) {
+    @apply bg-gray-900;
+  }
 }
 
 .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:last-child .fc-button {
-  @apply !h-auto !w-auto rounded-md !border-0 bg-transparent !px-5 !py-2 text-sm font-medium text-gray-500 hover:text-gray-700 focus: !shadow-none dark:text-gray-400;
+  @apply !h-auto !w-auto rounded-md !border-0 bg-transparent !px-5 !py-2 text-sm font-medium text-gray-500;
+
+  &:hover {
+    @apply text-gray-700;
+  }
+
+  &:focus {
+    @apply !shadow-none;
+  }
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+  }
 }
 
 .fc-header-toolbar.fc-toolbar .fc-toolbar-chunk:last-child .fc-button.fc-button-active {
-  @apply text-gray-900 bg-white dark:bg-gray-800 dark:text-white;
+  @apply text-gray-900 bg-white;
+
+  &:is(.dark *) {
+    @apply bg-gray-800 text-white;
+  }
 }
 
 .fc-theme-standard th {
-  @apply !border-x-0 border-t !border-gray-200 bg-gray-50 !text-left dark: !border-gray-800 dark:bg-gray-900;
+  @apply !border-x-0 border-t !border-gray-200 bg-gray-50 !text-left;
+
+  &:is(.dark *) {
+    @apply !border-gray-800 bg-gray-900;
+  }
 }
 
 .fc-theme-standard td,
 .fc-theme-standard .fc-scrollgrid {
-  @apply !border-gray-200 dark: !border-gray-800;
+  @apply !border-gray-200;
+
+  &:is(.dark *) {
+    @apply !border-gray-800;
+  }
 }
 
 .fc .fc-col-header-cell-cushion {
@@ -693,11 +998,19 @@ span.flatpickr-weekday,
 }
 
 .fc .fc-daygrid-day.fc-day-today .fc-scrollgrid-sync-inner {
-  @apply rounded-sm bg-gray-100 dark:bg-white/[0.03];
+  @apply rounded-sm bg-gray-100;
+
+  &:is(.dark *) {
+    @apply bg-white/[0.03];
+  }
 }
 
 .fc .fc-daygrid-day-number {
-  @apply !p-3 text-sm font-medium text-gray-700 dark:text-gray-400;
+  @apply !p-3 text-sm font-medium text-gray-700;
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+  }
 }
 
 .fc .fc-daygrid-day-top {
@@ -709,7 +1022,11 @@ span.flatpickr-weekday,
 }
 
 .fc .fc-day-other .fc-daygrid-day-top .fc-daygrid-day-number {
-  @apply text-gray-400 dark:text-white/30;
+  @apply text-gray-400;
+
+  &:is(.dark *) {
+    @apply text-white/30;
+  }
 }
 
 .event-fc-color {
@@ -765,11 +1082,19 @@ span.flatpickr-weekday,
 }
 
 .fc-direction-ltr .fc-timegrid-slot-label-frame {
-  @apply px-3 py-1.5 text-left text-sm font-medium text-gray-500 dark:text-gray-400;
+  @apply px-3 py-1.5 text-left text-sm font-medium text-gray-500;
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+  }
 }
 
 .fc .fc-timegrid-axis-cushion {
-  @apply text-sm font-medium text-gray-500 dark:text-gray-400;
+  @apply text-sm font-medium text-gray-500;
+
+  &:is(.dark *) {
+    @apply text-gray-400;
+  }
 }
 
 .input-date-icon::-webkit-inner-spin-button,
@@ -830,7 +1155,11 @@ span.flatpickr-weekday,
 }
 
 .form-check-input:checked~span {
-  @apply border-[6px] border-brand-500 bg-brand-500 dark:border-brand-500;
+  @apply border-[6px] border-brand-500 bg-brand-500;
+
+  &:is(.dark *) {
+    @apply border-brand-500;
+  }
 }
 
 .taskCheckbox:checked~.box span {
@@ -842,7 +1171,11 @@ span.flatpickr-weekday,
 }
 
 .taskCheckbox:checked~.box {
-  @apply border-brand-500 bg-brand-500 dark:border-brand-500;
+  @apply border-brand-500 bg-brand-500;
+
+  &:is(.dark *) {
+    @apply border-brand-500;
+  }
 }
 
 .task {
@@ -870,7 +1203,11 @@ span.flatpickr-weekday,
 }
 
 .simplebar-scrollbar::before {
-  @apply !bg-gray-200 !rounded-full dark: !bg-gray-700 !opacity-100;
+  @apply !bg-gray-200 !rounded-full !opacity-100;
+
+  &:is(.dark *) {
+    @apply !bg-gray-700;
+  }
 }
 
 .dark .simplebar-scrollbar::before {

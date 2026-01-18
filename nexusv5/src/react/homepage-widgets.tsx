@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import FeatureExplorer from './components/FeatureExplorer';
-import '../tailadmin_layer/index.css'; // Ensure Tailwind styles are loaded
+import './tailadmin_layer/index.css'; // Ensure Tailwind styles are loaded
 
 const featuresRoot = document.getElementById('react-features-root');
 
