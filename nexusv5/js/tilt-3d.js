@@ -16,27 +16,6 @@ class TiltEffect {
 
         this.cards.forEach(card => {
             this.addListeners(card);
-
-            // Add glare element if not present
-            if (!card.querySelector('.tilt-glare')) {
-                const glare = document.createElement('div');
-                glare.classList.add('tilt-glare');
-                Object.assign(glare.style, {
-                    position: 'absolute',
-                    top: '0',
-                    left: '0',
-                    width: '100%',
-                    height: '100%',
-                    borderRadius: 'inherit',
-                    background: 'radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15), transparent 60%)',
-                    opacity: '0',
-                    pointerEvents: 'none',
-                    mixBlendMode: 'overlay',
-                    transition: 'opacity 0.3s ease',
-                    zIndex: '2'
-                });
-                card.appendChild(glare);
-            }
         });
     }
 
@@ -59,19 +38,11 @@ class TiltEffect {
                 x: leftX - bounds.width / 2,
                 y: topY - bounds.height / 2
             };
-            const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
 
             // Rotation Logic
             const maxRotation = 10; // degrees
             const rotateX = ((center.y / bounds.height) * -maxRotation).toFixed(2);
             const rotateY = ((center.x / bounds.width) * maxRotation).toFixed(2);
-
-            // Glare Logic
-            const glare = card.querySelector('.tilt-glare');
-            if (glare) {
-                glare.style.transform = `translate(${center.x}px, ${center.y}px)`;
-                glare.style.opacity = '1';
-            }
 
             // Apply Transform
             card.style.transform = `
@@ -90,11 +61,6 @@ class TiltEffect {
                 rotateX(0deg) 
                 rotateY(0deg)
             `;
-
-            const glare = card.querySelector('.tilt-glare');
-            if (glare) {
-                glare.style.opacity = '0';
-            }
         };
 
         card.addEventListener('mouseenter', onMouseEnter);

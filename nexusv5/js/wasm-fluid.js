@@ -141,56 +141,56 @@ export class WasmFluid {
             this.isHovering = false;
         }
     }
-}
+    // Method removed from here to include subsequent methods in class
 
-draw() {
-    if (!this.simulator || !this.wasm) return;
+    draw() {
+        if (!this.simulator || !this.wasm) return;
 
-    const densityPtr = this.simulator.density_ptr();
-    const size = this.size;
+        const densityPtr = this.simulator.density_ptr();
+        const size = this.size;
 
-    // Access WASM memory
-    const memoryBuffer = this.wasm.memory.buffer;
-    const densityArray = new Float32Array(memoryBuffer, densityPtr, size * size);
+        // Access WASM memory
+        const memoryBuffer = this.wasm.memory.buffer;
+        const densityArray = new Float32Array(memoryBuffer, densityPtr, size * size);
 
-    // Update Canvas ImageData
-    const data = this.imageData.data;
-    const [r, g, b] = this.config.color;
+        // Update Canvas ImageData
+        const data = this.imageData.data;
+        const [r, g, b] = this.config.color;
 
-    for (let i = 0; i < size * size; i++) {
-        const density = densityArray[i];
-        const alpha = Math.min(density * 255, 255);
+        for (let i = 0; i < size * size; i++) {
+            const density = densityArray[i];
+            const alpha = Math.min(density * 255, 255);
 
-        // Index for RGBA
-        const j = i * 4;
+            // Index for RGBA
+            const j = i * 4;
 
-        // Color: Electric Purple/Blue (Cyberpunk)
-        // R: 168 (0xA8)
-        // G: 85  (0x55) 
-        // B: 247 (0xF7)
-        data[j] = r;     // R
-        data[j + 1] = g;  // G
-        data[j + 2] = b; // B
-        data[j + 3] = alpha; // A
+            // Color: Electric Purple/Blue (Cyberpunk)
+            // R: 168 (0xA8)
+            // G: 85  (0x55) 
+            // B: 247 (0xF7)
+            data[j] = r;     // R
+            data[j + 1] = g;  // G
+            data[j + 2] = b; // B
+            data[j + 3] = alpha; // A
+        }
+
+        this.ctx.putImageData(this.imageData, 0, 0);
     }
 
-    this.ctx.putImageData(this.imageData, 0, 0);
-}
+    animate() {
+        requestAnimationFrame(this.animate.bind(this));
 
-animate() {
-    requestAnimationFrame(this.animate.bind(this));
+        if (!this.simulator) return;
 
-    if (!this.simulator) return;
+        try {
+            // 1. Simulation step in Rust
+            this.simulator.step();
 
-    try {
-        // 1. Simulation step in Rust
-        this.simulator.step();
-
-        // 2. Render to Canvas
-        this.draw();
-    } catch (err) {
-        console.error('💥 Fluid simulation crashed:', err);
-        this.simulator = null; // Stop simulation
+            // 2. Render to Canvas
+            this.draw();
+        } catch (err) {
+            console.error('💥 Fluid simulation crashed:', err);
+            this.simulator = null; // Stop simulation
+        }
     }
-}
 }
