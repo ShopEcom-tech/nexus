@@ -59,8 +59,21 @@
         <div class="bg-gradient bg-gradient-2"></div>
         <div class="bg-grid"></div>
         <canvas id="particles-canvas"></canvas>
-        <canvas id="fluid-canvas"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.8; pointer-events: none; z-index: 10;"></canvas>
+
+        <!-- WASM FLUID HERO EFFECT -->
+        <canvas id="fluid-canvas" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 5;
+            mix-blend-mode: screen;
+            filter: blur(40px) saturate(1.5);
+        "></canvas>
+
         <!-- Three.js Container -->
         <div id="three-container"></div>
     </div>
@@ -437,17 +450,42 @@
     <!-- <script src="js/activity-feed.js"></script> -->
 
     <script type="module">
-        import { WasmFluid } from './js/wasm-fluid.js?v=3';
+        import { WasmFluid } from './js/wasm-fluid.js?v=4';
 
-        // Init fluid sim immediately
-        console.log('🌊 Initializing fluid sim from index.html');
-        try {
-            const fluid = new WasmFluid('fluid-canvas', 256, {
-                color: [168, 85, 247] // Brand Purple
-            });
-        } catch (e) {
-            console.error('🌊 Failed to instantiate WasmFluid:', e);
-        }
+        // Init WASM Fluid Hero Effect
+        console.log('🌊 Initializing WASM Fluid Hero Effect...');
+
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                // Higher resolution for smoother effect (512 = crisper but heavier)
+                const fluid = new WasmFluid('fluid-canvas', 128, {
+                    color: [168, 85, 247] // Brand Purple (#A855F7)
+                });
+
+                // Auto-inject some initial fluid for immediate visual impact
+                setTimeout(() => {
+                    if (fluid.simulator) {
+                        // Create initial splash in center
+                        const size = fluid.size;
+                        const cx = Math.floor(size / 2);
+                        const cy = Math.floor(size / 2);
+
+                        for (let i = 0; i < 20; i++) {
+                            const angle = (i / 20) * Math.PI * 2;
+                            const x = cx + Math.cos(angle) * 20;
+                            const y = cy + Math.sin(angle) * 20;
+                            fluid.simulator.add_density(x, y, 150);
+                            fluid.simulator.add_velocity(x, y, Math.cos(angle) * 3, Math.sin(angle) * 3);
+                        }
+                    }
+                }, 500);
+
+                console.log('✅ WASM Fluid Hero Effect initialized!');
+            } catch (e) {
+                console.error('🌊 Failed to instantiate WasmFluid:', e);
+            }
+        });
     </script>
 
     <!-- Cookie Consent - Innovation #10 -->

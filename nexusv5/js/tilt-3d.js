@@ -28,19 +28,7 @@ class TiltEffect {
         };
 
         const onMouseMove = (e) => {
-            if (!bounds) bounds = card.getBoundingClientRect();
-
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            const leftX = mouseX - bounds.x;
-            const topY = mouseY - bounds.y;
-            const center = {
-                x: leftX - bounds.width / 2,
-                y: topY - bounds.height / 2
-            };
-
-            // Apply Transform - Scale only, no rotation
-            card.style.transform = 'scale3d(1.02, 1.02, 1.02)';
+            // JS Tilt disabled - rely on CSS
         };
 
         const onMouseLeave = () => {

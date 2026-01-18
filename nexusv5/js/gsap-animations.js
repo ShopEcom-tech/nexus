@@ -274,6 +274,11 @@
         // ========================================
         // PARALLAX BACKGROUNDS
         // ========================================
+        // ========================================
+        // 3D PARALLAX MULTI-LAYER SYSTEM
+        // ========================================
+
+        // Layer 1 (Deepest): Gradients move VERY slowly (Far distance)
         gsap.to('.bg-gradient-1', {
             scrollTrigger: {
                 trigger: 'body',
@@ -281,8 +286,9 @@
                 end: 'bottom bottom',
                 scrub: 1
             },
-            y: 200,
-            x: 100,
+            y: 300,  // Move down slowly
+            x: 50,
+            scale: 1.1, // Slight zoom for depth
             ease: 'none'
         });
 
@@ -293,8 +299,37 @@
                 end: 'bottom bottom',
                 scrub: 1
             },
-            y: -150,
-            x: -80,
+            y: -200, // Move up slowly
+            x: -50,
+            scale: 1.2,
+            ease: 'none'
+        });
+
+        // Layer 2 (Mid): Fluid/Particles (Middle distance)
+        const fluidCanvas = document.querySelector('#fluid-canvas');
+        if (fluidCanvas) {
+            gsap.to(fluidCanvas, {
+                scrollTrigger: {
+                    trigger: 'body',
+                    start: 'top top', // Start immediately
+                    end: 'bottom bottom',
+                    scrub: 0.5 // More responsive scrubbing
+                },
+                y: 100, // Moves faster than background
+                ease: 'none'
+            });
+        }
+
+        // Layer 3 (Foreground): Content is handled by native scroll
+        // But we add a subtle parallax to the grid to separate it from bg
+        gsap.to('.bg-grid', {
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: 1
+            },
+            y: 50, // Almost static, anchors the scene
             ease: 'none'
         });
 

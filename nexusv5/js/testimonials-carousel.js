@@ -271,15 +271,20 @@
     }
 
     function init() {
+        console.log('✨ Testimonials Carousel: Using native HTML version for stability.');
+        // Automatic injection disabled to prevent layout bugs and scroll issues.
+        // The HTML version in temoignages.html is now the source of truth.
+
+        // logic below is disabled
+        /*
         if (!shouldShowOnCurrentPage()) return;
-
         injectStyles();
-
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', createCarousel);
         } else {
             createCarousel();
         }
+        */
     }
 
     init();

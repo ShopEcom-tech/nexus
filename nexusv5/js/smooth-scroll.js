@@ -14,12 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 1. Configuration Initiale ---
     const lenis = new Lenis({
-        duration: 1.2,              // Durée de l'inertie (plus c'est haut, plus c'est "lourd")
+        duration: 0.6,              // Reduced from 1.2 to 0.6 for responsive/snappy feel (less latency)
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing exponentiel
         direction: 'vertical',
         gestureDirection: 'vertical',
         smooth: true,
-        mouseMultiplier: 1,
+        mouseMultiplier: 1.2,       // Increased responsiveness
         smoothTouch: false,         // Désactiver sur mobile pour performance native (souvent mieux)
         touchMultiplier: 2,
     });

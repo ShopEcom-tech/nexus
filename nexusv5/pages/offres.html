@@ -135,276 +135,218 @@
         <!-- Pricing Section -->
         <section class="section" style="padding-top: 0;">
             <div class="container">
+                <!-- Spotlight Cards Styles -->
+                <style>
+                    .spotlight-card {
+                        position: relative;
+                        background-color: rgba(23, 23, 23, 0.6);
+                        /* Darker base */
+                        border-radius: 20px;
+                        border: 1px solid rgba(255, 255, 255, 0.1);
+                        overflow: hidden;
+                        height: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+                        /* Prepare vars */
+                        --mouse-x: -50px;
+                        --mouse-y: -50px;
+                    }
+
+                    .spotlight-card::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+                                rgba(255, 255, 255, 0.06),
+                                transparent 40%);
+                        opacity: 0;
+                        transition: opacity 0.5s;
+                        pointer-events: none;
+                        z-index: 1;
+                    }
+
+                    /* Border Glow Effect */
+                    .spotlight-card::after {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y),
+                                rgba(168, 85, 247, 0.4),
+                                transparent 40%);
+                        border-radius: inherit;
+                        z-index: 0;
+                        opacity: 0;
+                        transition: opacity 0.5s;
+                        pointer-events: none;
+                    }
+
+                    .spotlight-card:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                        border-color: rgba(255, 255, 255, 0.2);
+                    }
+
+                    .spotlight-card:hover::before,
+                    .spotlight-card:hover::after {
+                        opacity: 1;
+                    }
+
+                    /* Content stays on top */
+                    .spotlight-content {
+                        position: relative;
+                        z-index: 2;
+                        padding: 32px;
+                        background: rgba(23, 23, 23, 0.8);
+                        /* Inner slightly opaque to show border glow behind */
+                        border-radius: 19px;
+                        /* Slightly less than parent */
+                        margin: 1px;
+                        /* To show the border glow */
+                        height: calc(100% - 2px);
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .pricing-amount {
+                        font-weight: 800;
+                        background: linear-gradient(135deg, #a855f7, #ec4899);
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        display: inline-block;
+                    }
+                </style>
+
                 <div class="pricing-grid">
 
                     <!-- Plan 1: Site Vitrine -->
-                    <div class="card pricing-card">
-                        <div class="pricing-header">
-                            <h3 class="pricing-name" data-i18n="pricing.card1.title">Site Vitrine</h3>
-                            <p class="pricing-description" data-i18n="pricing.card1.desc">Parfait pour présenter votre
-                                activité</p>
-                        </div>
+                    <div class="spotlight-card">
+                        <div class="spotlight-content">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name" data-i18n="pricing.card1.title">Site Vitrine</h3>
+                                <p class="pricing-description" data-i18n="pricing.card1.desc">Parfait pour présenter
+                                    votre activité</p>
+                            </div>
 
-                        <div class="pricing-price">
-                            <span class="pricing-amount">299</span>
-                            <span class="pricing-currency">€</span>
-                            <p class="pricing-period" data-i18n="pricing.period.once">Paiement unique</p>
-                            <span class="pricing-negotiable" data-i18n="pricing.negotiable">💬 Prix négociable selon vos
-                                besoins</span>
-                            <div
-                                style="margin-top: 12px; padding: 8px 16px; background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 20px; display: inline-block;">
-                                <span class="delivery-time" style="--delivery-color: #4ade80;"
-                                    data-i18n="pricing.card1.delivery">⏱️ Livraison: 2 semaines</span>
+                            <div class="pricing-price">
+                                <span class="pricing-amount">299</span>
+                                <span class="pricing-currency">€</span>
+                                <p class="pricing-period" data-i18n="pricing.period.once">Paiement unique</p>
                             </div>
-                        </div>
 
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card1.feat1">Design
-                                    sur-mesure</span>
+                            <div class="pricing-features">
+                                <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #4ade80; margin-right: 10px;">✓</span> Design sur-mesure
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #4ade80; margin-right: 10px;">✓</span> Jusqu'à 5 pages
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #4ade80; margin-right: 10px;">✓</span> Responsive & SEO
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #4ade80; margin-right: 10px;">✓</span> Formulaire de contact
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card1.feat2">Jusqu'à 5
-                                    pages</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card1.feat3">Responsive (mobile,
-                                    tablette)</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card1.feat4">Optimisation SEO de
-                                    base</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card1.feat5">Formulaire de
-                                    contact</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card1.feat6">Hébergement 1 an
-                                    offert</span>
-                            </div>
-                        </div>
 
-                        <div class="pricing-cta">
-                            <button class="btn btn-outline" data-add-to-cart="vitrine" data-i18n="pricing.btn.cart">🛒
-                                Ajouter au panier</button>
+                            <div class="pricing-cta" style="margin-top: auto;">
+                                <button class="btn btn-outline" data-add-to-cart="vitrine"
+                                    style="width: 100%;">Commander</button>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Plan 2: E-commerce (Popular) -->
-                    <div class="card pricing-card popular">
-                        <div class="pricing-badge" data-i18n="pricing.popular">⭐ Populaire</div>
+                    <div class="spotlight-card popular">
+                        <div class="pricing-badge"
+                            style="position: absolute; top: 12px; right: 12px; z-index: 10; background: #ec4899; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold;">
+                            ⭐ Populaire</div>
+                        <div class="spotlight-content"
+                            style="background: rgba(23, 23, 23, 0.7); /* Slightly lighter for pop */">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name" data-i18n="pricing.card2.title">E-commerce</h3>
+                                <p class="pricing-description" data-i18n="pricing.card2.desc">Votre boutique en ligne
+                                    complète</p>
+                            </div>
 
-                        <div class="pricing-header">
-                            <h3 class="pricing-name" data-i18n="pricing.card2.title">E-commerce</h3>
-                            <p class="pricing-description" data-i18n="pricing.card2.desc">Lancez votre boutique en ligne
-                            </p>
-                        </div>
+                            <div class="pricing-price">
+                                <span class="pricing-amount">599</span>
+                                <span class="pricing-currency">€</span>
+                                <p class="pricing-period" data-i18n="pricing.period.once">Paiement unique</p>
+                            </div>
 
-                        <div class="pricing-price">
-                            <span class="pricing-amount">599</span>
-                            <span class="pricing-currency">€</span>
-                            <p class="pricing-period" data-i18n="pricing.period.once">Paiement unique</p>
-                            <span class="pricing-negotiable" data-i18n="pricing.negotiable">💬 Prix négociable selon vos
-                                besoins</span>
-                            <div
-                                style="margin-top: 12px; padding: 8px 16px; background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.3); border-radius: 20px; display: inline-block;">
-                                <span class="delivery-time" style="--delivery-color: #a78bfa;"
-                                    data-i18n="pricing.card2.delivery">⏱️ Livraison: 4 semaines</span>
+                            <div class="pricing-features">
+                                <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #a855f7; margin-right: 10px;">✓</span> <strong>Tout du pack
+                                            Site Vitrine</strong>
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #a855f7; margin-right: 10px;">✓</span> 100 Produits
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #a855f7; margin-right: 10px;">✓</span> Paiement Stripe
+                                        Sécurisé
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #a855f7; margin-right: 10px;">✓</span> Dashboard Admin
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
 
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat1">Tout du plan
-                                    Vitrine</span>
+                            <div class="pricing-cta" style="margin-top: auto;">
+                                <button class="btn btn-primary" data-add-to-cart="ecommerce"
+                                    style="width: 100%;">Commander</button>
                             </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat2">Jusqu'à 100
-                                    produits</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat3">Paiement sécurisé
-                                    (Stripe)</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat4">Gestion des
-                                    stocks</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat5">Tableau de bord
-                                    admin</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat6">Formation
-                                    incluse</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card2.feat7">Support prioritaire 6
-                                    mois</span>
-                            </div>
-                        </div>
-
-                        <div class="pricing-cta">
-                            <button class="btn btn-primary" data-add-to-cart="ecommerce" data-i18n="pricing.btn.cart">🛒
-                                Ajouter au panier</button>
                         </div>
                     </div>
 
                     <!-- Plan 3: Sur-mesure -->
-                    <div class="card pricing-card">
-                        <div class="pricing-header">
-                            <h3 class="pricing-name" data-i18n="pricing.card3.title">Sur-mesure</h3>
-                            <p class="pricing-description" data-i18n="pricing.card3.desc">Solution personnalisée à vos
-                                besoins</p>
-                        </div>
+                    <div class="spotlight-card">
+                        <div class="spotlight-content">
+                            <div class="pricing-header">
+                                <h3 class="pricing-name" data-i18n="pricing.card3.title">Sur-mesure</h3>
+                                <p class="pricing-description" data-i18n="pricing.card3.desc">Solution personnalisée</p>
+                            </div>
 
-                        <div class="pricing-price">
-                            <span class="pricing-amount">1299</span>
-                            <span class="pricing-currency">€</span>
-                            <p class="pricing-period" data-i18n="pricing.period.from">À partir de</p>
-                            <span class="pricing-negotiable" data-i18n="pricing.negotiable">💬 Prix négociable selon vos
-                                besoins</span>
-                            <div
-                                style="margin-top: 12px; padding: 8px 16px; background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 20px; display: inline-block;">
-                                <span class="delivery-time" style="--delivery-color: #f472b6;"
-                                    data-i18n="pricing.card3.delivery">⏱️ Livraison: 6+ semaines</span>
+                            <div class="pricing-price">
+                                <span class="pricing-amount">1299</span>
+                                <span class="pricing-currency">€</span>
+                                <p class="pricing-period" data-i18n="pricing.period.from">À partir de</p>
                             </div>
-                        </div>
 
-                        <div class="pricing-features">
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat1">Architecture
-                                    personnalisée</span>
+                            <div class="pricing-features">
+                                <ul style="list-style: none; padding: 0; margin-top: 20px;">
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #ec4899; margin-right: 10px;">✓</span> Architecture Complexe
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #ec4899; margin-right: 10px;">✓</span> API & CRM
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #ec4899; margin-right: 10px;">✓</span> Design UX Avancé
+                                    </li>
+                                    <li class="pricing-feature" style="margin-bottom: 15px;">
+                                        <span style="color: #ec4899; margin-right: 10px;">✓</span> Maintenance
+                                        Prioritaire
+                                    </li>
+                                </ul>
                             </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat2">Fonctionnalités
-                                    sur-mesure</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat3">Intégrations API
-                                    tierces</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat4">Performances
-                                    optimisées</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat5">Accompagnement
-                                    dédié</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat6">Maintenance
-                                    premium</span>
-                            </div>
-                            <div class="pricing-feature">
-                                <div class="pricing-feature-icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                </div>
-                                <span class="pricing-feature-text" data-i18n="pricing.card3.feat7">SLA garanti</span>
-                            </div>
-                        </div>
 
-                        <div class="pricing-cta">
-                            <button class="btn btn-outline" data-add-to-cart="surmesure" data-i18n="pricing.btn.cart">🛒
-                                Ajouter au panier</button>
+                            <div class="pricing-cta" style="margin-top: auto;">
+                                <button class="btn btn-outline" data-add-to-cart="surmesure" style="width: 100%;">Devis
+                                    Gratuit</button>
+                            </div>
                         </div>
                     </div>
 
@@ -515,6 +457,7 @@
 
     <script src="../js/3d-logo.js"></script>
     <script src="../js/gsap-animations.js"></script>
+    <script src="../js/spotlight.js"></script>
     <script src="../js/cart.js"></script>
 
     <!-- AI Chatbot Widget -->
