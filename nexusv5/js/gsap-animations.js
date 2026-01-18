@@ -229,35 +229,12 @@
         // ========================================
         // 3D CARD TILT EFFECT
         // ========================================
-        document.querySelectorAll('.card, .benefit-card, .pricing-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-
-                gsap.to(card, {
-                    rotateX: rotateX,
-                    rotateY: rotateY,
-                    transformPerspective: 1000,
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            });
-
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    rotateX: 0,
-                    rotateY: 0,
-                    duration: 0.5,
-                    ease: 'power2.out'
-                });
-            });
-        });
+        // ========================================
+        // 3D CARD TILT EFFECT (DISABLED)
+        // ========================================
+        // document.querySelectorAll('.card, .benefit-card, .pricing-card').forEach(card => {
+        //     // 3D rotation disabled by user request
+        // });
 
         // ========================================
         // CTA SECTION ANIMATION

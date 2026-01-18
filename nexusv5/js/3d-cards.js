@@ -44,13 +44,9 @@
                 }
 
                 // Apply transform only if significant change
-                const rotateX = currentY * 8; // Reduced from 15 to 8 degrees max
-                const rotateY = currentX * 8;
+                // Apply transform only if significant change
 
                 card.style.transform = `
-                    perspective(1000px)
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
                     scale3d(${isHovering ? 1.02 : 1}, ${isHovering ? 1.02 : 1}, 1)
                 `;
 

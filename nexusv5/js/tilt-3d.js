@@ -39,28 +39,13 @@ class TiltEffect {
                 y: topY - bounds.height / 2
             };
 
-            // Rotation Logic
-            const maxRotation = 10; // degrees
-            const rotateX = ((center.y / bounds.height) * -maxRotation).toFixed(2);
-            const rotateY = ((center.x / bounds.width) * maxRotation).toFixed(2);
-
-            // Apply Transform
-            card.style.transform = `
-                perspective(1000px) 
-                scale3d(1.02, 1.02, 1.02)
-                rotateX(${rotateX}deg) 
-                rotateY(${rotateY}deg)
-            `;
+            // Apply Transform - Scale only, no rotation
+            card.style.transform = 'scale3d(1.02, 1.02, 1.02)';
         };
 
         const onMouseLeave = () => {
             card.style.transition = 'transform 0.5s ease-out';
-            card.style.transform = `
-                perspective(1000px) 
-                scale3d(1, 1, 1) 
-                rotateX(0deg) 
-                rotateY(0deg)
-            `;
+            card.style.transform = 'scale3d(1, 1, 1)';
         };
 
         card.addEventListener('mouseenter', onMouseEnter);
