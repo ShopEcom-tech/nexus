@@ -14,15 +14,46 @@ import { initSmoothScroll } from './smooth-scroll.js';
 
 console.log('🚀 Nexus v5 Main Module Loaded');
 
-// Ensure GSAP bits run if not auto-run
+// Feature Modules
+import './3d-cards.js';
+import './3d-logo.js';
+import './chatbot.js';
+import './whatsapp-widget.js';
+import './counter-animation.js';
+// import './activity-feed.js'; // Disabled
+import './cookie-consent.js';
+import './typing-effect.js';
+import './trust-badges.js';
+import './faq-accordion.js';
+import './promo-banner.js';
+import './exit-intent.js';
+import './newsletter-popup.js';
+import './testimonials-carousel.js';
+import './theme-toggle.js';
+import './scroll-reveal.js';
+import './sticky-cta.js';
+import './visitor-counter.js';
+import './reading-progress.js';
+import './cart.js';
+import './tooltip-system.js';
+import './push-notifications.js';
+import './confetti.js';
+import './lazy-loading.js';
+import './keyboard-shortcuts.js';
+import './email-service.js';
+import './calendly-widget.js';
+import './tilt-3d.js';
+import './language-switcher.js';
+
+// Init Functions
 if (document.readyState !== 'loading') {
     initGSAPAnimations();
     initSmoothScroll();
     initBarbaTransitions();
+} else {
+    document.addEventListener('DOMContentLoaded', () => {
+        initGSAPAnimations();
+        initSmoothScroll();
+        initBarbaTransitions();
+    });
 }
-// Listen for DOMContentLoaded usually handled by module defer, but safe to add:
-document.addEventListener('DOMContentLoaded', () => {
-    // Already calling initGSAPAnimations inside its file if loading
-    initSmoothScroll();
-    initBarbaTransitions();
-});

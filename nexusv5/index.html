@@ -269,12 +269,6 @@
             </div>
         </section>
 
-        <!-- React Feature Explorer (Injected) -->
-        <section class="section">
-            <div id="react-features-root"></div>
-        </section>
-        <script type="module" src="/src/react/homepage-widgets.tsx"></script>
-
         <!-- Trust Badges Section -->
         <section class="trust-section">
             <div class="container">
@@ -395,22 +389,7 @@
     <!-- Custom Scripts managed by Vite Module System -->
     <script type="module" src="/js/main.js"></script>
 
-    <!-- Other specific widgets that are not yet modulized can stay, or be moved to main.js later -->
-    <script src="js/3d-cards.js"></script>
-    <script src="js/3d-logo.js"></script>
-
-    <!-- AI Chatbot Widget -->
-    <script src="js/chatbot.js"></script>
-
-    <!-- WhatsApp Floating Button - Innovation #2 -->
-    <script src="js/whatsapp-widget.js"></script>
-
-    <!-- Animated Counters - Innovation #7 -->
-    <script src="js/counter-animation.js"></script>
-
-    <!-- Live Activity Feed - Innovation #8 (Disabled) -->
-    <!-- <script src="js/activity-feed.js"></script> -->
-
+    <!-- WASM Fluid Init -->
     <script type="module">
         import { WasmFluid } from './js/wasm-fluid.js?v=4';
 
@@ -447,92 +426,6 @@
             } catch (e) {
                 console.error('🌊 Failed to instantiate WasmFluid:', e);
             }
-        });
-    </script>
-
-    <!-- Cookie Consent - Innovation #10 -->
-    <script src="js/cookie-consent.js"></script>
-
-    <!-- Typing Effect - Innovation #13 -->
-    <script src="js/typing-effect.js"></script>
-
-    <!-- Trust Badges - Innovation #12 -->
-    <script src="js/trust-badges.js"></script>
-
-    <!-- FAQ Accordion - Innovation #14 -->
-    <script src="js/faq-accordion.js"></script>
-
-    <!-- Promo Banner - Innovation #15 -->
-    <script src="js/promo-banner.js"></script>
-
-    <!-- Exit Intent Popup - Innovation #16 -->
-    <script src="js/exit-intent.js"></script>
-
-    <!-- Page Transitions - Innovation #17 -->
-    <script src="js/page-transitions.js"></script>
-
-    <!-- Newsletter Popup - Innovation #18 -->
-    <script src="js/newsletter-popup.js"></script>
-
-    <!-- Testimonials Carousel - Innovation #19 -->
-    <script src="js/testimonials-carousel.js"></script>
-
-    <!-- Theme Toggle - Innovation #20 -->
-    <script src="js/theme-toggle.js"></script>
-
-    <!-- Scroll Reveal - Innovation #21 -->
-    <script src="js/scroll-reveal.js"></script>
-
-    <!-- Sticky CTA - Innovation #22 -->
-    <script src="js/sticky-cta.js"></script>
-
-    <!-- Visitor Counter - Innovation #23 -->
-    <script src="js/visitor-counter.js"></script>
-
-    <!-- Reading Progress - Innovation #24 -->
-    <script src="js/reading-progress.js"></script>
-
-    <!-- Cart Management -->
-    <script src="js/cart.js"></script>
-
-    <!-- Tooltip System - Innovation #25 -->
-    <script src="js/tooltip-system.js"></script>
-
-    <!-- Push Notifications - Innovation #26 -->
-    <script src="js/push-notifications.js"></script>
-
-    <!-- Confetti Animation - Innovation #27 -->
-    <script src="js/confetti.js"></script>
-
-    <!-- Lazy Loading - Innovation #28 -->
-    <script src="js/lazy-loading.js"></script>
-
-    <!-- Keyboard Shortcuts - Innovation #29 -->
-    <script src="js/keyboard-shortcuts.js"></script>
-
-    <!-- Email Service - Brevo Integration -->
-    <script src="js/email-service.js"></script>
-
-    <!-- Calendly Widget - Booking Integration -->
-    <script src="js/calendly-widget.js"></script>
-
-    <!-- 3D Tilt Effect -->
-    <script src="js/tilt-3d.js"></script>
-
-    <!-- Language Switcher - Innovation #30 -->
-    <script src="js/language-switcher.js"></script>
-
-    <!-- Smooth Scroll Init -->
-    <script src="js/smooth-scroll.js"></script>
-    <!-- WASM Fluid Init -->
-    <script type="module">
-        import { WasmFluid } from './js/wasm-fluid.js';
-
-        // Initialize Fluid in Hero Section
-        // Use a smaller internal resolution (e.g., 128 or 256) for performance/retro look
-        // The CSS scales it up to fullscreen
-        new WasmFluid('fluid-canvas', 128, {
-            color: [124, 58, 237] // Primary Purple
         });
     </script>
 </body>
