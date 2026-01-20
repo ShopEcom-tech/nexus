@@ -29,6 +29,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 12px 24px;
+    gap: 20px;
+    /* Prevent touching */
     transition: all 0.3s ease;
     background: transparent;
     backdrop-filter: none;
@@ -42,6 +44,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    flex-shrink: 0;
 }
 
 .navbar-logo-icon {
@@ -80,7 +83,8 @@
 
 .navbar-link {
     position: relative;
-    padding: 10px 20px;
+    padding: 10px 14px;
+    /* Reduced from 20px to save space */
     font-size: 14px;
     font-weight: 500;
     color: #a1a1aa;

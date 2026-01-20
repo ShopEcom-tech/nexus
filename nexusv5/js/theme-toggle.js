@@ -8,6 +8,11 @@
     'use strict';
 
     const THEMES = {
+        light: {
+            name: 'Light',
+            icon: '☀️',
+            colors: ['#ffffff', '#f4f4f5', '#7c3aed']
+        },
         cyberpunk: {
             name: 'Cyberpunk',
             icon: '🦀',

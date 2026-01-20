@@ -3,6 +3,66 @@
    4 Themes: Cyberpunk, Ocean, Forest, Sunset
    ======================================== */
 
+/* LIGHT THEME (Clean White/Gray) */
+:root[data-theme="light"] {
+    /* Background Colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8f9fa;
+
+    /* Text Colors */
+    --text-primary: #18181b;
+    --text-secondary: #52525b;
+    --text-muted: #71717a;
+    --text-disabled: #a1a1aa;
+
+    /* Primary Colors (Violet - Adjusted for light) */
+    --primary-300: #a78bfa;
+    --primary-400: #8b5cf6;
+    --primary-500: #7c3aed;
+    --primary-600: #6d28d9;
+    --primary-700: #5b21b6;
+
+    /* Secondary Colors (Pink - Adjusted for light) */
+    --secondary-300: #f472b6;
+    --secondary-400: #ec4899;
+    --secondary-500: #db2777;
+    --secondary-600: #be185d;
+    --secondary-700: #9d174d;
+
+    /* Accent Colors (Cyan) */
+    --accent-400: #22d3ee;
+    --accent-500: #06b6d4;
+    --accent-600: #0891b2;
+
+    /* Utility Colors */
+    --success: #16a34a;
+    --warning: #d97706;
+    --error: #dc2626;
+    --info: #2563eb;
+
+    /* Borders & Overlays */
+    --border-subtle: #e4e4e7;
+    --border-medium: #d4d4d8;
+    --border-strong: #a1a1aa;
+    --overlay-light: rgba(255, 255, 255, 0.5);
+    --overlay-medium: rgba(255, 255, 255, 0.8);
+    --overlay-dark: rgba(255, 255, 255, 0.95);
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+    --gradient-text: linear-gradient(135deg, #6d28d9 0%, #db2777 50%, #6d28d9 100%);
+    --gradient-background-1: radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+    --gradient-background-2: radial-gradient(circle, rgba(219, 39, 119, 0.05) 0%, transparent 70%);
+
+    /* Box Shadows for Light Mode cards */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 /* CYBERPUNK THEME (Default - Dark Purple/Pink/Cyan) */
 :root,
 :root[data-theme="cyberpunk"] {

@@ -627,7 +627,11 @@
 }
 
 .flatpickr-calendar {
-  @apply mt-2 !bg-white !rounded-xl !p-5 !border !border-gray-200 !text-gray-500 2xsm: !w-auto;
+  @apply mt-2 !bg-white !rounded-xl !p-5 !border !border-gray-200 !text-gray-500;
+
+  @media (min-width: 375px) {
+    width: auto !important;
+  }
 
   &:is(.dark *) {
     @apply !border-white/5 !bg-gray-dark !text-gray-400 !shadow-theme-xl;
@@ -859,7 +863,11 @@ span.flatpickr-weekday,
 }
 
 .fc .fc-toolbar.fc-header-toolbar {
-  @apply flex-col gap-4 px-6 pt-6 sm:flex-row;
+  @apply flex-col gap-4 px-6 pt-6;
+
+  @media (min-width: 640px) {
+    @apply flex-row;
+  }
 }
 
 .fc-button-group {
@@ -1131,17 +1139,29 @@ span.flatpickr-weekday,
 
 .carouselTwo .swiper-button-prev,
 .carouselFour .swiper-button-prev {
-  @apply !left-3 sm: !left-4;
+  @apply !left-3;
+
+  @media (min-width: 640px) {
+    @apply !left-4;
+  }
 }
 
 .carouselTwo .swiper-button-next,
 .carouselFour .swiper-button-next {
-  @apply !right-3 sm: !right-4;
+  @apply !right-3;
+
+  @media (min-width: 640px) {
+    @apply !right-4;
+  }
 }
 
 .carouselThree .swiper-pagination,
 .carouselFour .swiper-pagination {
-  @apply !bottom-3 !left-1/2 inline-flex !w-auto -translate-x-1/2 items-center gap-1.5 rounded-[40px] border-[0.5px] border-white/10 bg-white/60 px-2 py-1.5 shadow-slider-navigation backdrop-blur-[10px] sm: !bottom-5;
+  @apply !bottom-3 !left-1/2 inline-flex !w-auto -translate-x-1/2 items-center gap-1.5 rounded-[40px] border-[0.5px] border-white/10 bg-white/60 px-2 py-1.5 shadow-slider-navigation backdrop-blur-[10px];
+
+  @media (min-width: 640px) {
+    @apply !bottom-5;
+  }
 }
 
 .carouselThree .swiper-pagination-bullet,
