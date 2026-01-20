@@ -98,7 +98,7 @@ export function initGSAPAnimations() {
     // ========================================
     // TEXT REVEAL ANIMATION (Mask Effect)
     // ========================================
-    const splitTextElements = document.querySelectorAll('.section-title, .section-subtitle, .benefit-description, .hero-title, .hero-subtitle');
+    const splitTextElements = document.querySelectorAll('.section-title:not(.cta-card .section-title), .section-subtitle:not(.cta-card .section-subtitle), .benefit-description, .hero-title, .hero-subtitle');
 
     splitTextElements.forEach(el => {
         // Simple line split simulation (since we don't have SplitText plugin)
@@ -201,7 +201,7 @@ export function initGSAPAnimations() {
     // ========================================
 
     // Section titles
-    gsap.utils.toArray('.section-title').forEach(title => {
+    gsap.utils.toArray('.section-title:not(.cta-card .section-title)').forEach(title => {
         gsap.from(title, {
             scrollTrigger: {
                 trigger: title,
@@ -216,7 +216,7 @@ export function initGSAPAnimations() {
     });
 
     // Section subtitles
-    gsap.utils.toArray('.section-subtitle').forEach(subtitle => {
+    gsap.utils.toArray('.section-subtitle:not(.cta-card .section-subtitle)').forEach(subtitle => {
         gsap.from(subtitle, {
             scrollTrigger: {
                 trigger: subtitle,
