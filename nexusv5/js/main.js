@@ -3,7 +3,15 @@
 // Imports all major modules
 
 import './config.js'; // Global config
-import './script.js'; // General script (to be refactored further)
+
+// New Modular Imports
+import { initParticles } from './features/particle-canvas.js';
+import { initNavbar } from './components/navbar.js';
+import { initScrollObserver } from './features/scroll-observer.js';
+import { initContactForm } from './features/contact-form.js';
+import { initUIInteractions } from './utils/ui-interactions.js';
+import { initSimpleTestimonials } from './components/simple-testimonials.js';
+
 import './three-effects.js'; // 3D Background
 import { initGSAPAnimations } from './gsap-animations.js';
 import { initBarbaTransitions } from './page-transitions.js';
@@ -22,8 +30,10 @@ import './whatsapp-widget.js';
 import './counter-animation.js';
 // import './activity-feed.js'; // Disabled
 import './cookie-consent.js';
-import './typing-effect.js';
+import './typewriter.js';
+import './command-palette.js';
 import './trust-badges.js';
+import './contact-form.js';
 import './faq-accordion.js';
 import './promo-banner.js';
 import './exit-intent.js';
@@ -43,17 +53,30 @@ import './keyboard-shortcuts.js';
 import './email-service.js';
 import './calendly-widget.js';
 import './tilt-3d.js';
+import './supabase.js';
+import './auth.js';
+import './spotlight.js';
+import './liquid-distortion.js';
+import './quiz-widget.js';
 import './language-switcher.js';
 
 // Init Functions
-if (document.readyState !== 'loading') {
+function initApp() {
     initGSAPAnimations();
     initSmoothScroll();
     initBarbaTransitions();
+
+    // New modules initialization
+    initParticles();
+    initNavbar();
+    initScrollObserver();
+    initContactForm();
+    initUIInteractions();
+    initSimpleTestimonials();
+}
+
+if (document.readyState !== 'loading') {
+    initApp();
 } else {
-    document.addEventListener('DOMContentLoaded', () => {
-        initGSAPAnimations();
-        initSmoothScroll();
-        initBarbaTransitions();
-    });
+    document.addEventListener('DOMContentLoaded', initApp);
 }
