@@ -11,6 +11,8 @@
 
 html {
     /* scroll-behavior: smooth;  <-- Disabled to prevent conflict with Lenis */
+    overflow-x: hidden;
+    width: 100%;
 }
 
 body {

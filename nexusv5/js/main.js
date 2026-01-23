@@ -15,12 +15,12 @@ import { initThemeSwitcher } from './components/theme-switcher.js';
 import { initCounters } from './counter-animation.js';
 
 import { initThreeBackground } from './three-effects.js'; // 3D Background (Persistent)
-import { initLiquidDistortion, destroyLiquidDistortion } from './liquid-distortion.js'; // Page specific (Lifecycle managed)
+// import { initLiquidDistortion, destroyLiquidDistortion } from './liquid-distortion.js'; // Page specific (Lifecycle managed)
 import { initGSAPAnimations } from './gsap-animations.js';
-import { initBarbaTransitions } from './page-transitions.js';
+// import { initBarbaTransitions } from './page-transitions.js';
 import { initSmoothScroll } from './smooth-scroll.js';
 
-import barba from '@barba/core';
+// import barba from '@barba/core';
 
 // Styles
 // import '../css/style.css'; 
@@ -68,7 +68,7 @@ import './language-switcher.js';
 function initGlobalFeatures() {
     initThemeSwitcher(); // First for FOUC
     initSmoothScroll();
-    initBarbaTransitions();
+    // initBarbaTransitions();
     initThreeBackground();
     initNavbar(); // Header is persistent
 }
@@ -80,7 +80,7 @@ function initPageFeatures() {
     try { initContactForm(); } catch (e) { console.warn('Contact form not found'); }
     initUIInteractions();
     initSimpleTestimonials();
-    initLiquidDistortion(); // Re-init liquid effects on new images
+    // initLiquidDistortion(); // Re-init liquid effects on new images
     initGSAPAnimations(); // Re-trigger GSAP setup
 }
 
@@ -90,13 +90,15 @@ function initApp() {
     initPageFeatures();
 
     // Barba Hooks for Lifecycle Management
+    /*
     barba.hooks.beforeLeave(() => {
-        destroyLiquidDistortion();
+        // destroyLiquidDistortion();
     });
 
     barba.hooks.afterEnter(() => {
         initPageFeatures();
     });
+    */
 }
 
 if (document.readyState !== 'loading') {
