@@ -25,7 +25,7 @@
                 transform: translateX(-50%) translateY(-100px);
                 background: rgba(15, 15, 20, 0.85);
                 backdrop-filter: blur(20px);
-                border: 1px solid rgba(124, 58, 237, 0.3);
+                border: 1px solid rgba(37, 99, 235, 0.3);
                 z-index: 10000;
                 padding: 10px 20px;
                 display: flex;
@@ -35,7 +35,7 @@
                 font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
                 border-radius: 50px;
                 transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                box-shadow: 0 4px 30px rgba(124, 58, 237, 0.15);
+                box-shadow: 0 4px 30px rgba(37, 99, 235, 0.15);
             }
 
             .promo-banner.visible {
@@ -48,7 +48,7 @@
                 inset: 0;
                 border-radius: 50px;
                 padding: 1px;
-                background: linear-gradient(90deg, #7c3aed, #db2777, #7c3aed);
+                background: linear-gradient(90deg, #2563eb, #0ea5e9, #2563eb);
                 -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
                 mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
                 -webkit-mask-composite: xor;
@@ -68,14 +68,14 @@
 
             .promo-banner-text strong {
                 color: white;
-                background: linear-gradient(90deg, #a78bfa, #f472b6);
+                background: linear-gradient(90deg, #60a5fa, #38bdf8);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
             }
 
             .promo-banner-link {
-                background: linear-gradient(135deg, #7c3aed, #db2777);
+                background: linear-gradient(135deg, #2563eb, #0ea5e9);
                 color: white;
                 padding: 6px 14px;
                 border-radius: 20px;
@@ -88,7 +88,7 @@
 
             .promo-banner-link:hover {
                 transform: scale(1.05);
-                box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+                box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
             }
 
             .promo-banner-close {

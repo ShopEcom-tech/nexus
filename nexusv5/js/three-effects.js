@@ -6,21 +6,34 @@
 import * as THREE from 'three';
 import WasmParticleSystem from './wasm-particles.js';
 
-async function initThreeJS() {
+let renderer = null;
+let scene = null;
+let camera = null;
+let animationId = null;
+let resizeHandler = null;
+let mouseMoveHandler = null;
+let scrollHandler = null; // Adding scroll handler cleanup
+let wasmSystem = null;
+let shapes = [];
+
+export async function initThreeBackground() {
     const container = document.getElementById('three-container');
     if (!container) return;
 
+    // Clean up existing if any (safety check)
+    if (renderer) destroyThreeBackground();
+
     // Scene setup
-    const scene = new THREE.Scene();
+    scene = new THREE.Scene();
 
     // Add subtle fog for depth
     scene.fog = new THREE.FogExp2(0x0a0a0f, 0.008);
 
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 50;
 
     // Renderer with enhanced settings
-    const renderer = new THREE.WebGLRenderer({
+    renderer = new THREE.WebGLRenderer({
         antialias: true,
         alpha: true,
         powerPreference: 'high-performance'
@@ -35,10 +48,11 @@ async function initThreeJS() {
     // Mouse tracking
     const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
 
-    document.addEventListener('mousemove', (e) => {
+    mouseMoveHandler = (e) => {
         mouse.targetX = (e.clientX / window.innerWidth) * 2 - 1;
         mouse.targetY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
+    };
+    document.addEventListener('mousemove', mouseMoveHandler);
 
     // ========================================
     // ENHANCED COLOR PALETTE - CYBERPUNK
@@ -57,12 +71,12 @@ async function initThreeJS() {
     // WASM PARTICLE SYSTEM (10,000 particles)
     // ========================================
     // Replaces the old JS-based 2000 particle system
-    const wasmSystem = new WasmParticleSystem(scene, 10000);
+    wasmSystem = new WasmParticleSystem(scene, 10000);
 
     // ========================================
     // ENHANCED GEOMETRIC SHAPES
     // ========================================
-    const shapes = [];
+    shapes = [];
 
     // Create various shapes
     const createShape = (geometry, position, scale, colorIndex) => {
@@ -179,7 +193,9 @@ async function initThreeJS() {
     const clock = new THREE.Clock();
 
     function animate() {
-        requestAnimationFrame(animate);
+        if (!renderer) return; // Stop if destroyed
+
+        animationId = requestAnimationFrame(animate);
 
         const delta = clock.getDelta();
         time += delta;
@@ -189,7 +205,7 @@ async function initThreeJS() {
         mouse.y += (mouse.targetY - mouse.y) * 0.08;
 
         // Update WASM Particle System
-        wasmSystem.update(delta);
+        if (wasmSystem) wasmSystem.update(delta);
 
         // Animate shapes
         shapes.forEach((shape) => {
@@ -223,16 +239,17 @@ async function initThreeJS() {
     // ========================================
     // RESIZE HANDLER
     // ========================================
-    window.addEventListener('resize', () => {
+    resizeHandler = () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-    });
+    };
+    window.addEventListener('resize', resizeHandler);
 
     // ========================================
     // ENHANCED SCROLL PARALLAX
     // ========================================
-    window.addEventListener('scroll', () => {
+    scrollHandler = () => {
         const scrollY = window.scrollY;
         const maxScroll = document.body.scrollHeight - window.innerHeight;
         const scrollProgress = Math.min(scrollY / maxScroll, 1);
@@ -240,19 +257,72 @@ async function initThreeJS() {
         // Camera depth on scroll
         camera.position.z = 50 + scrollProgress * 40;
 
-        // Note: Global rotation of particles handled by camera/scene movement now
-
         // Fade fog based on scroll
-        scene.fog.density = 0.008 + scrollProgress * 0.005;
-    });
+        if (scene && scene.fog) {
+            scene.fog.density = 0.008 + scrollProgress * 0.005;
+        }
+    };
+    window.addEventListener('scroll', scrollHandler);
 
     console.log('🦀 Rust/WASM 3D Effects - Loaded successfully!');
     console.log('🔥 10,000 Particles simulating via WebAssembly');
 }
 
-// Initialize
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initThreeJS);
-} else {
-    initThreeJS();
+export function destroyThreeBackground() {
+    if (animationId) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    }
+
+    if (resizeHandler) {
+        window.removeEventListener('resize', resizeHandler);
+        resizeHandler = null;
+    }
+
+    if (mouseMoveHandler) {
+        document.removeEventListener('mousemove', mouseMoveHandler);
+        mouseMoveHandler = null;
+    }
+
+    if (scrollHandler) {
+        window.removeEventListener('scroll', scrollHandler);
+        scrollHandler = null;
+    }
+
+    if (renderer) {
+        renderer.dispose();
+        if (renderer.domElement && renderer.domElement.parentNode) {
+            renderer.domElement.parentNode.removeChild(renderer.domElement);
+        }
+        renderer = null;
+    }
+
+    // Dispose of scene objects
+    if (shapes.length > 0) {
+        shapes.forEach(shape => {
+            if (shape.mesh) {
+                if (shape.mesh.geometry) shape.mesh.geometry.dispose();
+                if (shape.mesh.material) shape.mesh.material.dispose();
+            }
+        });
+        shapes = [];
+    }
+
+    // Attempt to dispose scenes
+    if (scene) {
+        scene.traverse(object => {
+            if (object.geometry) object.geometry.dispose();
+            if (object.material) {
+                if (Array.isArray(object.material)) {
+                    object.material.forEach(material => material.dispose());
+                } else {
+                    object.material.dispose();
+                }
+            }
+        });
+        scene = null;
+    }
+
+    wasmSystem = null; // Remove reference
+    camera = null;
 }

@@ -10,7 +10,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth;  <-- Disabled to prevent conflict with Lenis */
 }
 
 body {
@@ -63,14 +63,14 @@ select {
 }
 
 ::selection {
-    background: rgba(124, 58, 237, 0.4);
+    background: rgba(99, 102, 241, 0.4);
     /* Keep as fallback, or use calc() */
     color: var(--text-primary);
 }
 
 /* ========================================
-   ANIMATED BACKGROUND
-   ======================================== */
+    ANIMATED BACKGROUND
+    ======================================== */
 .background {
     position: fixed;
     top: 0;
@@ -113,10 +113,10 @@ select {
     width: 100%;
     height: 100%;
     background-image:
-        linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(37, 99, 235, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.05) 1px, transparent 1px);
     background-size: 60px 60px;
-    opacity: 0.5;
+    opacity: 0.6;
 }
 
 

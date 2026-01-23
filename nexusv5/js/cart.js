@@ -392,14 +392,14 @@ notificationStyles.textContent = `
         position: fixed;
         bottom: 24px;
         right: 24px;
-        background: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+        background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
         color: white;
         padding: 16px 24px;
         border-radius: 12px;
         display: flex;
         align-items: center;
         gap: 12px;
-        box-shadow: 0 10px 40px rgba(124, 58, 237, 0.4);
+        box-shadow: 0 10px 40px rgba(37, 99, 235, 0.4);
         transform: translateY(100px);
         opacity: 0;
         transition: all 0.3s ease;

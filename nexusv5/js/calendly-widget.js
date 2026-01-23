@@ -12,7 +12,7 @@
         url: 'https://calendly.com/ecommshoppp13/30min',
 
         // Couleurs pour matcher le thème du site
-        primaryColor: '7c3aed',
+        primaryColor: '2563eb',
         textColor: 'ffffff',
         backgroundColor: '0f0f15'
     };
@@ -115,7 +115,7 @@
 
         if (url.includes('YOUR_USERNAME')) {
             container.innerHTML = `
-                <div style="text-align: center; padding: 40px; background: rgba(124, 58, 237, 0.1); border-radius: 16px; border: 1px dashed #7c3aed;">
+                <div style="text-align: center; padding: 40px; background: rgba(37, 99, 235, 0.1); border-radius: 16px; border: 1px dashed #2563eb;">
                     <p style="color: #a1a1aa; margin-bottom: 16px;">📅 La prise de rendez-vous sera bientôt disponible !</p>
                     <p style="color: #71717a; font-size: 14px;">En attendant, contactez-nous par email.</p>
                 </div>

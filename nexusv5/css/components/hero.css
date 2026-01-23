@@ -35,7 +35,7 @@
 
 .hero-subtitle {
     font-size: clamp(16px, 2vw, 20px);
-    color: #a1a1aa;
+    color: var(--text-muted);
     max-width: 640px;
     margin: 0 auto 48px;
     line-height: 1.7;
@@ -93,7 +93,7 @@
 
 .hero-stat-label {
     font-size: 14px;
-    color: #71717a;
+    color: var(--text-muted);
     margin-top: 4px;
 }
 

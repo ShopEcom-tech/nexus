@@ -1,9 +1,11 @@
-import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
+import * as THREE from 'three';
 
 /**
  * Liquid Distortion Effect
  * Replaces static images with a Three.js canvas featuring a fluid distortion shader on hover.
  */
+
+let instances = [];
 
 class LiquidImage {
     constructor(imageElement) {
@@ -15,12 +17,17 @@ class LiquidImage {
         this.material = null;
         this.mesh = null;
         this.geometry = null;
+        this.animationId = null;
 
         // Animation variables
         this.time = 0;
         this.hover = 0; // 0 to 1
         this.targetHover = 0;
         this.isHovering = false;
+
+        // Event handlers
+        this.handleMouseEnter = this.onMouseEnter.bind(this);
+        this.handleMouseLeave = this.onMouseLeave.bind(this);
 
         this.init();
     }
@@ -48,8 +55,14 @@ class LiquidImage {
         this.container.style.borderRadius = getComputedStyle(this.image).borderRadius;
 
         // Insert container and move image inside (hidden)
-        this.image.parentNode.insertBefore(this.container, this.image);
-        this.container.appendChild(this.image);
+        if (this.image.parentNode) {
+            this.image.parentNode.insertBefore(this.container, this.image);
+            this.container.appendChild(this.image);
+        } else {
+            // Safety check if image was removed from DOM
+            return;
+        }
+
         this.image.style.opacity = '0'; // Hide original image but keep it for sizing
         this.image.style.position = 'absolute';
         this.image.style.zIndex = '-1';
@@ -67,10 +80,11 @@ class LiquidImage {
         // Renderer
         this.renderer = new THREE.WebGLRenderer({
             alpha: true,
-            antialias: true
+            antialias: true,
+            powerPreference: 'high-performance'
         });
         this.renderer.setSize(rect.width, rect.height);
-        this.renderer.setPixelRatio(window.devicePixelRatio);
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         this.container.appendChild(this.renderer.domElement);
 
         // Fix Canvas Styling
@@ -149,26 +163,36 @@ class LiquidImage {
         this.scene.add(this.mesh);
 
         // Event Listeners
-        this.container.addEventListener('mouseenter', () => {
-            this.isHovering = true;
-            this.targetHover = 1;
-        });
-
-        this.container.addEventListener('mouseleave', () => {
-            this.isHovering = false;
-            this.targetHover = 0;
-        });
+        this.container.addEventListener('mouseenter', this.handleMouseEnter);
+        this.container.addEventListener('mouseleave', this.handleMouseLeave);
 
         // Start Animation Loop
         this.animate();
     }
 
+    onMouseEnter() {
+        this.isHovering = true;
+        this.targetHover = 1;
+    }
+
+    onMouseLeave() {
+        this.isHovering = false;
+        this.targetHover = 0;
+    }
+
     animate() {
-        requestAnimationFrame(this.animate.bind(this));
+        if (!this.renderer) return;
+
+        this.animationId = requestAnimationFrame(this.animate.bind(this));
 
         // Smooth hover transition
         this.hover += (this.targetHover - this.hover) * 0.08;
         this.time += 0.05;
+
+        // Optimization: Stop rendering if not hovering and essentially static (hover near 0)
+        // But we need to keep rendering if we want the "time" based wave effect to be continuous? 
+        // The shader uses uTime. If uHover is 0, the shader effect is minimal (just texture lookup).
+        // For performance, we could pause, but for now let's keep it running but rely on explicit destroy() to stop it.
 
         if (this.material) {
             this.material.uniforms.uHover.value = this.hover;
@@ -179,16 +203,47 @@ class LiquidImage {
             this.renderer.render(this.scene, this.camera);
         }
     }
+
+    destroy() {
+        if (this.animationId) {
+            cancelAnimationFrame(this.animationId);
+            this.animationId = null;
+        }
+
+        if (this.container) {
+            this.container.removeEventListener('mouseenter', this.handleMouseEnter);
+            this.container.removeEventListener('mouseleave', this.handleMouseLeave);
+        }
+
+        if (this.geometry) this.geometry.dispose();
+        if (this.material) this.material.dispose();
+
+        if (this.renderer) {
+            this.renderer.dispose();
+            this.renderer = null;
+        }
+
+        this.scene = null;
+        this.camera = null;
+        this.container = null;
+        this.image = null;
+    }
 }
 
-// Initialize on all elements with data-liquid attribute
-document.addEventListener('DOMContentLoaded', () => {
+export function initLiquidDistortion() {
     // We delay slightly to ensure images are laid out
     setTimeout(() => {
         const liquidImages = document.querySelectorAll('[data-liquid]');
         liquidImages.forEach(img => {
-            new LiquidImage(img);
+            instances.push(new LiquidImage(img));
         });
-        console.log(`🌊 Liquid Distortion initialized on ${liquidImages.length} images`);
-    }, 500);
-});
+        if (liquidImages.length > 0) {
+            console.log(`🌊 Liquid Distortion initialized on ${liquidImages.length} images`);
+        }
+    }, 100);
+}
+
+export function destroyLiquidDistortion() {
+    instances.forEach(instance => instance.destroy());
+    instances = [];
+}

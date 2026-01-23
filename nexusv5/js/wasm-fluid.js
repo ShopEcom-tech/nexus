@@ -16,7 +16,7 @@ export class WasmFluid {
 
         this.size = size;
         this.config = {
-            color: config.color || [168, 85, 247], // Default Purple
+            color: config.color || [37, 99, 235], // Default Royal Blue
             ...config
         };
 
@@ -29,7 +29,7 @@ export class WasmFluid {
         // CSS handles the visual scaling up
         this.canvas.style.width = '100%';
         this.canvas.style.height = '100%';
-        this.canvas.style.imageRendering = 'pixelated'; // Retro/Cyberpunk look
+        this.canvas.style.imageRendering = 'pixelated'; // Retro look
 
         this.simulator = null;
         this.imageData = this.ctx.createImageData(size, size);
@@ -78,8 +78,6 @@ export class WasmFluid {
 
         // Touch Support
         container.addEventListener('touchstart', (e) => {
-            // Prevent scrolling when touching canvas if desired, but maybe better to allow it
-            // e.preventDefault(); 
             this.isHovering = false; // Reset for new touch
         }, { passive: true });
 
@@ -141,7 +139,6 @@ export class WasmFluid {
             this.isHovering = false;
         }
     }
-    // Method removed from here to include subsequent methods in class
 
     draw() {
         if (!this.simulator || !this.wasm) return;
@@ -164,10 +161,7 @@ export class WasmFluid {
             // Index for RGBA
             const j = i * 4;
 
-            // Color: Electric Purple/Blue (Cyberpunk)
-            // R: 168 (0xA8)
-            // G: 85  (0x55) 
-            // B: 247 (0xF7)
+            // Color applied (Blue)
             data[j] = r;     // R
             data[j + 1] = g;  // G
             data[j + 2] = b; // B

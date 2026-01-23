@@ -9,7 +9,7 @@
     const CONFETTI_CONFIG = {
         particleCount: 100,
         spread: 70,
-        colors: ['#7c3aed', '#db2777', '#4ade80', '#fbbf24', '#60a5fa']
+        colors: ['#2563eb', '#0ea5e9', '#4ade80', '#fbbf24', '#60a5fa']
     };
 
     function injectStyles() {

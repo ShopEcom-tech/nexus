@@ -13,6 +13,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/services.css">
+
     <style>
         html.lenis,
         html.lenis body {
@@ -33,398 +35,6 @@
 
         .lenis.lenis-scrolling iframe {
             pointer-events: none;
-        }
-    </style>
-
-    <style>
-        /* Services Page Enhanced Styles */
-        .services-hero {
-            padding: 160px 0 80px;
-            text-align: center;
-        }
-
-        .services-hero .section-title {
-            font-size: clamp(40px, 6vw, 64px);
-            margin-bottom: 24px;
-        }
-
-        .services-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 48px;
-            flex-wrap: wrap;
-        }
-
-        .services-stat {
-            text-align: center;
-        }
-
-        .services-stat-value {
-            font-size: 48px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .services-stat-label {
-            font-size: 14px;
-            color: #71717a;
-            margin-top: 4px;
-        }
-
-        /* Enhanced Service Cards */
-        .services-grid-enhanced {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 32px;
-            margin-bottom: 80px;
-        }
-
-        .service-card-enhanced {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 40px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card-enhanced::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--card-color, #7c3aed), var(--card-color-end, #db2777));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-card-enhanced:hover::before {
-            opacity: 1;
-        }
-
-        .service-card-enhanced:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(124, 58, 237, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.15);
-        }
-
-        .service-icon-large {
-            width: 72px;
-            height: 72px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 36px;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, rgba(124, 58, 237, 0.2), rgba(219, 39, 119, 0.1));
-        }
-
-        .service-badge {
-            display: inline-block;
-            padding: 6px 12px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-radius: 20px;
-            margin-bottom: 16px;
-        }
-
-        .badge-popular {
-            background: rgba(16, 185, 129, 0.2);
-            color: #10b981;
-        }
-
-        .badge-premium {
-            background: rgba(168, 85, 247, 0.2);
-            color: #a855f7;
-        }
-
-        .service-title-enhanced {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .service-description-enhanced {
-            color: #a1a1aa;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-
-        .service-features {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .service-features li {
-            padding: 8px 0;
-            color: #d4d4d8;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: #10b981;
-            font-weight: 700;
-        }
-
-        /* Technologies Section */
-        .tech-section {
-            padding: 100px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .tech-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            background: rgba(124, 58, 237, 0.1);
-            border-color: rgba(124, 58, 237, 0.3);
-            transform: scale(1.05);
-        }
-
-        .tech-icon {
-            font-size: 40px;
-            margin-bottom: 12px;
-        }
-
-        .tech-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #e4e4e7;
-        }
-
-        /* Comparison Section */
-        .comparison-section {
-            padding: 100px 0;
-        }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            margin-top: 48px;
-        }
-
-        .comparison-table th,
-        .comparison-table td {
-            padding: 20px 24px;
-            text-align: left;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        }
-
-        .comparison-table th {
-            font-weight: 600;
-            color: #a1a1aa;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .comparison-table th:nth-child(2),
-        .comparison-table th:nth-child(3) {
-            text-align: center;
-        }
-
-        .comparison-table td:nth-child(2),
-        .comparison-table td:nth-child(3) {
-            text-align: center;
-        }
-
-        .comparison-table tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .comparison-table .feature-name {
-            font-weight: 500;
-        }
-
-        .check-yes {
-            color: #10b981;
-            font-size: 20px;
-        }
-
-        .check-no {
-            color: #71717a;
-            font-size: 20px;
-        }
-
-        .check-partial {
-            color: #f59e0b;
-            font-size: 14px;
-        }
-
-        .col-webshop {
-            background: rgba(124, 58, 237, 0.1) !important;
-            font-weight: 600;
-            color: #a855f7;
-        }
-
-        /* Process Enhanced */
-        .process-timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, #7c3aed, #db2777);
-            transform: translateX(-50%);
-        }
-
-        @media (max-width: 768px) {
-            .process-timeline::before {
-                left: 24px;
-            }
-
-            .services-stats {
-                gap: 32px;
-            }
-
-            .services-grid-enhanced {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .process-item {
-            display: flex;
-            gap: 40px;
-            margin-bottom: 48px;
-            position: relative;
-        }
-
-        .process-item:nth-child(even) {
-            flex-direction: row-reverse;
-            text-align: right;
-        }
-
-        @media (max-width: 768px) {
-
-            .process-item,
-            .process-item:nth-child(even) {
-                flex-direction: row;
-                text-align: left;
-                padding-left: 60px;
-            }
-        }
-
-        .process-number {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #7c3aed, #db2777);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 18px;
-            flex-shrink: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .process-content {
-            flex: 1;
-            max-width: 300px;
-        }
-
-        .process-title-enhanced {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .process-desc {
-            color: #a1a1aa;
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            padding: 100px 0;
-        }
-
-        .faq-grid {
-            max-width: 800px;
-            margin: 48px auto 0;
-        }
-
-        .faq-item {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 24px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .faq-question::after {
-            content: '+';
-            font-size: 24px;
-            color: #a855f7;
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            padding: 0 24px 24px;
-            color: #a1a1aa;
-            line-height: 1.7;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
-            display: block;
         }
     </style>
 </head>
@@ -474,9 +84,7 @@
                 <a href="../index.html" class="navbar-logo" style="display: flex; align-items: center; gap: 12px;">
                     <img src="../images/webshop-logo.png" alt="Web Shop"
                         style="width: 40px; height: 40px; object-fit: contain;">
-                    <span
-                        style="font-size: 20px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px;">Web
-                        Shop</span>
+                    <span class="nav-brand-text">Web Shop</span>
                 </a>
 
                 <div class="navbar-links">
@@ -503,9 +111,9 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="page-content">
+    <div class="page-content" data-barba="container" data-barba-namespace="services">
 
-        <!-- Hero Section Enhanced -->
+        <!-- Hero Section -->
         <section class="services-hero">
             <div class="container">
                 <span class="badge">
@@ -515,25 +123,25 @@
                 <h1 class="section-title">
                     Tout ce qu'il faut pour <span class="text-gradient">réussir</span> en ligne
                 </h1>
-                <p class="section-subtitle" style="max-width: 640px; margin: 0 auto;">
+                <p class="section-subtitle">
                     Design premium, développement sur-mesure, SEO avancé et support 24/7.
                     Nous vous accompagnons à chaque étape de votre succès digital.
                 </p>
 
-                <div class="services-stats">
-                    <div class="services-stat">
+                <div class="services-stats-container">
+                    <div class="services-stat-item">
                         <div class="services-stat-value">150+</div>
                         <div class="services-stat-label">Projets livrés</div>
                     </div>
-                    <div class="services-stat">
+                    <div class="services-stat-item">
                         <div class="services-stat-value">98%</div>
                         <div class="services-stat-label">Clients satisfaits</div>
                     </div>
-                    <div class="services-stat">
+                    <div class="services-stat-item">
                         <div class="services-stat-value">+40%</div>
                         <div class="services-stat-label">Taux de conversion</div>
                     </div>
-                    <div class="services-stat">
+                    <div class="services-stat-item">
                         <div class="services-stat-value">24/7</div>
                         <div class="services-stat-label">Support réactif</div>
                     </div>
@@ -541,108 +149,168 @@
             </div>
         </section>
 
-        <!-- Services Grid Enhanced -->
-        <section class="section" style="padding-top: 0;">
+        <!-- Services Grid -->
+        <section class="services-section">
             <div class="container">
-                <div class="services-grid-enhanced">
+                <div class="services-grid-container">
 
                     <!-- Design UX/UI -->
-                    <div class="service-card-enhanced" style="--card-color: #8b5cf6; --card-color-end: #a855f7;">
-                        <span class="service-badge badge-premium">Premium</span>
-                        <div class="service-icon-large">🎨</div>
-                        <h3 class="service-title-enhanced">Design UX/UI</h3>
-                        <p class="service-description-enhanced">
+                    <div class="service-card-modern"
+                        style="--card-accent: #a855f7; --card-accent-bg: rgba(168, 85, 247, 0.2);">
+                        <span class="card-badge badge-premium">Premium</span>
+                        <div class="service-icon-wrapper">
+                            🎨
+                        </div>
+                        <h3 class="service-title-modern">Design UX/UI</h3>
+                        <p class="service-desc-modern">
                             Des interfaces modernes et intuitives qui captent l'attention et convertissent vos visiteurs
                             en clients.
                         </p>
-                        <ul class="service-features">
-                            <li>Maquettes Figma interactives</li>
-                            <li>Prototypage haute-fidélité</li>
-                            <li>Tests utilisateurs A/B</li>
-                            <li>Design system complet</li>
-                            <li>Animations micro-interactions</li>
+                        <ul class="service-feature-list">
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Maquettes Figma interactives
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Prototypage haute-fidélité
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Tests utilisateurs A/B
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Design system complet
+                            </li>
                         </ul>
                     </div>
 
                     <!-- SEO -->
-                    <div class="service-card-enhanced" style="--card-color: #10b981; --card-color-end: #06b6d4;">
-                        <span class="service-badge badge-popular">Populaire</span>
-                        <div class="service-icon-large">🔍</div>
-                        <h3 class="service-title-enhanced">Optimisation SEO</h3>
-                        <p class="service-description-enhanced">
+                    <div class="service-card-modern"
+                        style="--card-accent: #10b981; --card-accent-bg: rgba(16, 185, 129, 0.2);">
+                        <span class="card-badge badge-popular">Populaire</span>
+                        <div class="service-icon-wrapper">
+                            🔍
+                        </div>
+                        <h3 class="service-title-modern">Optimisation SEO</h3>
+                        <p class="service-desc-modern">
                             Dominez les résultats de recherche Google et attirez un trafic qualifié sur votre site.
                         </p>
-                        <ul class="service-features">
-                            <li>Audit SEO complet</li>
-                            <li>Recherche de mots-clés</li>
-                            <li>Optimisation on-page</li>
-                            <li>Stratégie de backlinks</li>
-                            <li>Suivi Google Analytics</li>
+                        <ul class="service-feature-list">
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Audit SEO complet
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Recherche de mots-clés
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Optimisation on-page
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Stratégie de backlinks
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Responsive -->
-                    <div class="service-card-enhanced" style="--card-color: #f472b6; --card-color-end: #ec4899;">
-                        <div class="service-icon-large">📱</div>
-                        <h3 class="service-title-enhanced">100% Responsive</h3>
-                        <p class="service-description-enhanced">
+                    <div class="service-card-modern"
+                        style="--card-accent: #ec4899; --card-accent-bg: rgba(236, 72, 153, 0.2);">
+                        <div class="service-icon-wrapper">
+                            📱
+                        </div>
+                        <h3 class="service-title-modern">100% Responsive</h3>
+                        <p class="service-desc-modern">
                             Une expérience parfaite sur tous les écrans, du smartphone au grand écran.
                         </p>
-                        <ul class="service-features">
-                            <li>Approche Mobile-first</li>
-                            <li>Progressive Web App (PWA)</li>
-                            <li>Navigation touch-friendly</li>
-                            <li>Images adaptatives</li>
-                            <li>Tests multi-devices</li>
+                        <ul class="service-feature-list">
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Approche Mobile-first
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Progressive Web App (PWA)
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Navigation touch-friendly
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Images adaptatives
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Sécurité -->
-                    <div class="service-card-enhanced" style="--card-color: #ef4444; --card-color-end: #f97316;">
-                        <div class="service-icon-large">🛡️</div>
-                        <h3 class="service-title-enhanced">Sécurité Maximale</h3>
-                        <p class="service-description-enhanced">
+                    <div class="service-card-modern"
+                        style="--card-accent: #ef4444; --card-accent-bg: rgba(239, 68, 68, 0.2);">
+                        <div class="service-icon-wrapper">
+                            🛡️
+                        </div>
+                        <h3 class="service-title-modern">Sécurité Maximale</h3>
+                        <p class="service-desc-modern">
                             Protection avancée contre les menaces et conformité RGPD garantie.
                         </p>
-                        <ul class="service-features">
-                            <li>Certificat SSL Let's Encrypt</li>
-                            <li>Protection DDoS & Firewall</li>
-                            <li>Sauvegardes quotidiennes</li>
-                            <li>Conformité RGPD</li>
-                            <li>Monitoring 24/7</li>
+                        <ul class="service-feature-list">
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Certificat SSL Let's Encrypt
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Protection DDoS & Firewall
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Sauvegardes quotidiennes
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Conformité RGPD
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Performance -->
-                    <div class="service-card-enhanced" style="--card-color: #eab308; --card-color-end: #f59e0b;">
-                        <span class="service-badge badge-popular">Populaire</span>
-                        <div class="service-icon-large">⚡</div>
-                        <h3 class="service-title-enhanced">Performance Optimale</h3>
-                        <p class="service-description-enhanced">
+                    <div class="service-card-modern"
+                        style="--card-accent: #eab308; --card-accent-bg: rgba(234, 179, 8, 0.2);">
+                        <span class="card-badge badge-popular">Populaire</span>
+                        <div class="service-icon-wrapper">
+                            ⚡
+                        </div>
+                        <h3 class="service-title-modern">Performance Optimale</h3>
+                        <p class="service-desc-modern">
                             Sites ultra-rapides pour une expérience utilisateur fluide et un meilleur référencement.
                         </p>
-                        <ul class="service-features">
-                            <li>Score Core Web Vitals 90+</li>
-                            <li>CDN mondial Cloudflare</li>
-                            <li>Lazy loading intelligent</li>
-                            <li>Compression Brotli/GZIP</li>
-                            <li>Cache optimisé</li>
+                        <ul class="service-feature-list">
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Score Core Web Vitals 90+
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> CDN mondial Cloudflare
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Lazy loading intelligent
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Compression Brotli/GZIP
+                            </li>
                         </ul>
                     </div>
 
                     <!-- Maintenance -->
-                    <div class="service-card-enhanced" style="--card-color: #06b6d4; --card-color-end: #3b82f6;">
-                        <div class="service-icon-large">🔧</div>
-                        <h3 class="service-title-enhanced">Maintenance Incluse</h3>
-                        <p class="service-description-enhanced">
+                    <div class="service-card-modern"
+                        style="--card-accent: #3b82f6; --card-accent-bg: rgba(59, 130, 246, 0.2);">
+                        <div class="service-icon-wrapper">
+                            🔧
+                        </div>
+                        <h3 class="service-title-modern">Maintenance Incluse</h3>
+                        <p class="service-desc-modern">
                             Nous prenons soin de votre site pour que vous puissiez vous concentrer sur votre business.
                         </p>
-                        <ul class="service-features">
-                            <li>Mises à jour régulières</li>
-                            <li>Corrections de bugs</li>
-                            <li>Support technique réactif</li>
-                            <li>Rapports mensuels</li>
-                            <li>Modifications mineures incluses</li>
+                        <ul class="service-feature-list">
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Mises à jour régulières
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Corrections de bugs
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Support technique réactif
+                            </li>
+                            <li class="service-feature-item">
+                                <span class="service-feature-icon">✓</span> Modifications mineures incluses
+                            </li>
                         </ul>
                     </div>
 
@@ -650,196 +318,134 @@
             </div>
         </section>
 
-        <!-- Custom Scripts -->
-        <script type="module" src="../js/main.js"></script>
-</body>
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="badge">❓ FAQ</span>
+                    <h2 class="section-title">
+                        Questions <span class="text-gradient">fréquentes</span>
+                    </h2>
+                </div>
 
-<div class="card process-card">
-    <div class="process-step text-gradient">03</div>
-    <h3 class="process-title">Développement</h3>
-    <p class="process-description">Construction de votre site avec les dernières technologies. Tests
-        et optimisation continue.</p>
-</div>
+                <div class="faq-grid">
+                    <div class="faq-item active">
+                        <div class="faq-question">Combien coûte un site web ?</div>
+                        <div class="faq-answer">
+                            Nos prix commencent à partir de 990€ pour un site vitrine. Le coût final dépend de la
+                            complexité du projet, des fonctionnalités souhaitées et du nombre de pages. Nous proposons
+                            également des facilités de paiement en 3x ou 4x sans frais.
+                        </div>
+                    </div>
 
-<div class="card process-card">
-    <div class="process-step text-gradient">04</div>
-    <h3 class="process-title">Lancement</h3>
-    <p class="process-description">Mise en ligne, formation et accompagnement pour un démarrage
-        réussi. Support continu.</p>
-</div>
-</div>
-</div>
-</section>
+                    <div class="faq-item">
+                        <div class="faq-question">Combien de temps pour créer un site ?</div>
+                        <div class="faq-answer">
+                            En moyenne, un site vitrine prend 2-3 semaines. Un site e-commerce ou sur-mesure peut
+                            prendre 4-8 semaines selon la complexité. Nous définissons ensemble un planning réaliste dès
+                            le début du projet.
+                        </div>
+                    </div>
 
-<!-- FAQ Section -->
-<section class="faq-section">
-    <div class="container">
-        <div class="section-header">
-            <span class="badge">❓ FAQ</span>
-            <h2 class="section-title">
-                Questions <span class="text-gradient">fréquentes</span>
-            </h2>
-        </div>
+                    <div class="faq-item">
+                        <div class="faq-question">La maintenance est-elle vraiment incluse ?</div>
+                        <div class="faq-answer">
+                            Oui, avec nos abonnements vous bénéficiez d'une maintenance complète : mises à jour de
+                            sécurité, corrections de bugs, sauvegardes automatiques et modifications mineures (textes,
+                            images). Le support technique est disponible 7j/7.
+                        </div>
+                    </div>
 
-        <div class="faq-grid">
-            <div class="faq-item active">
-                <div class="faq-question">Combien coûte un site web ?</div>
-                <div class="faq-answer">
-                    Nos prix commencent à partir de 990€ pour un site vitrine. Le coût final dépend de la
-                    complexité du projet, des fonctionnalités souhaitées et du nombre de pages. Nous proposons
-                    également des facilités de paiement en 3x ou 4x sans frais.
+                    <div class="faq-item">
+                        <div class="faq-question">Puis-je modifier mon site moi-même ?</div>
+                        <div class="faq-answer">
+                            Absolument ! Nous pouvons intégrer un CMS (WordPress, Strapi, etc.) pour vous permettre de
+                            gérer votre contenu facilement. Une formation est incluse pour vous rendre autonome.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">Proposez-vous l'hébergement ?</div>
+                        <div class="faq-answer">
+                            Oui, nous proposons un hébergement premium haute-performance inclus dans nos abonnements.
+                            Serveurs en France, SSL gratuit, CDN mondial et sauvegardes quotidiennes sont inclus.
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="faq-item">
-                <div class="faq-question">Combien de temps pour créer un site ?</div>
-                <div class="faq-answer">
-                    En moyenne, un site vitrine prend 2-3 semaines. Un site e-commerce ou sur-mesure peut
-                    prendre 4-8 semaines selon la complexité. Nous définissons ensemble un planning réaliste dès
-                    le début du projet.
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="card cta-card">
+                    <h2 class="section-title">
+                        Prêt à booster votre <span class="text-gradient">présence en ligne</span> ?
+                    </h2>
+                    <p class="section-subtitle">
+                        Discutons de votre projet et voyons comment nous pouvons vous aider à atteindre vos objectifs.
+                    </p>
+                    <a href="contact.html" class="btn btn-primary">Démarrer mon projet →</a>
                 </div>
             </div>
+        </section>
 
-            <div class="faq-item">
-                <div class="faq-question">La maintenance est-elle vraiment incluse ?</div>
-                <div class="faq-answer">
-                    Oui, avec nos abonnements vous bénéficiez d'une maintenance complète : mises à jour de
-                    sécurité, corrections de bugs, sauvegardes automatiques et modifications mineures (textes,
-                    images). Le support technique est disponible 7j/7.
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-brand">
+                        <a href="../index.html" class="footer-logo"
+                            style="display: flex; align-items: center; gap: 12px;">
+                            <img src="../images/webshop-logo.png" alt="Web Shop"
+                                style="width: 36px; height: 36px; object-fit: contain;">
+                            <span class="nav-brand-text" style="font-size: 1.125rem;">Web Shop</span>
+                        </a>
+                        <p class="footer-description">
+                            Agence web premium spécialisée dans la création de sites web modernes qui maximisent vos
+                            revenus.
+                        </p>
+                        <div class="footer-social">
+                            <a href="https://www.linkedin.com/feed/" class="footer-social-link">in</a>
+                            <a href="https://x.com/?lang=fr" class="footer-social-link">𝕏</a>
+                            <a href="https://www.instagram.com/" class="footer-social-link">◎</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Services</h4>
+                        <a href="offres.html" class="footer-link">Site Vitrine</a>
+                        <a href="offres.html" class="footer-link">E-commerce</a>
+                        <a href="offres.html" class="footer-link">Sur-mesure</a>
+                        <a href="services.html" class="footer-link">Maintenance</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Entreprise</h4>
+                        <a href="a-propos.html" class="footer-link">À propos</a>
+                        <a href="temoignages.html" class="footer-link">Témoignages</a>
+                        <a href="contact.html" class="footer-link">Contact</a>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4 class="footer-column-title">Légal</h4>
+                        <a href="mentions-legales.html" class="footer-link">Mentions légales</a>
+                        <a href="confidentialite.html" class="footer-link">Confidentialité</a>
+                        <a href="cgv.html" class="footer-link">CGV</a>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p class="footer-copyright">© 2026 Web Shop. Tous droits réservés.</p>
+                    <p class="footer-credit">Conçu avec <span>♥</span> à Paris, France</p>
                 </div>
             </div>
+        </footer>
 
-            <div class="faq-item">
-                <div class="faq-question">Puis-je modifier mon site moi-même ?</div>
-                <div class="faq-answer">
-                    Absolument ! Nous pouvons intégrer un CMS (WordPress, Strapi, etc.) pour vous permettre de
-                    gérer votre contenu facilement. Une formation est incluse pour vous rendre autonome.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-question">Proposez-vous l'hébergement ?</div>
-                <div class="faq-answer">
-                    Oui, nous proposons un hébergement premium haute-performance inclus dans nos abonnements.
-                    Serveurs en France, SSL gratuit, CDN mondial et sauvegardes quotidiennes sont inclus.
-                </div>
-            </div>
-        </div>
     </div>
-</section>
 
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="container">
-        <div class="card cta-card">
-            <h2 class="section-title">
-                Prêt à booster votre <span class="text-gradient">présence en ligne</span> ?
-            </h2>
-            <p class="section-subtitle">
-                Discutons de votre projet et voyons comment nous pouvons vous aider à atteindre vos objectifs.
-            </p>
-            <a href="contact.html" class="btn btn-primary">Démarrer mon projet →</a>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="../index.html" class="footer-logo" style="display: flex; align-items: center; gap: 12px;">
-                    <img src="../images/webshop-logo.png" alt="Web Shop"
-                        style="width: 36px; height: 36px; object-fit: contain;">
-                    <span
-                        style="font-size: 18px; font-weight: 800; background: linear-gradient(135deg, #a855f7, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Web
-                        Shop</span>
-                </a>
-                <p class="footer-description">
-                    Agence web premium spécialisée dans la création de sites web modernes qui maximisent vos
-                    revenus.
-                </p>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/feed/" class="footer-social-link">in</a>
-                    <a href="https://x.com/?lang=fr" class="footer-social-link">𝕏</a>
-                    <a href="https://www.instagram.com/" class="footer-social-link">◎</a>
-                </div>
-            </div>
-
-            <div class="footer-column">
-                <h4 class="footer-column-title">Services</h4>
-                <a href="offres.html" class="footer-link">Site Vitrine</a>
-                <a href="offres.html" class="footer-link">E-commerce</a>
-                <a href="offres.html" class="footer-link">Sur-mesure</a>
-                <a href="services.html" class="footer-link">Maintenance</a>
-            </div>
-
-            <div class="footer-column">
-                <h4 class="footer-column-title">Entreprise</h4>
-                <a href="a-propos.html" class="footer-link">À propos</a>
-                <a href="temoignages.html" class="footer-link">Témoignages</a>
-                <a href="contact.html" class="footer-link">Contact</a>
-            </div>
-
-            <div class="footer-column">
-                <h4 class="footer-column-title">Légal</h4>
-                <a href="mentions-legales.html" class="footer-link">Mentions légales</a>
-                <a href="confidentialite.html" class="footer-link">Confidentialité</a>
-                <a href="cgv.html" class="footer-link">CGV</a>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p class="footer-copyright">© 2026 Web Shop. Tous droits réservés.</p>
-            <p class="footer-credit">Conçu avec <span>♥</span> à Paris, France</p>
-        </div>
-    </div>
-</footer>
-
-</div>
-
-<!-- Three.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<!-- Lenis Library (Smooth Scroll) -->
-<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-<!-- GSAP & ScrollTrigger -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-<!-- Custom Scripts -->
-<script src="../js/script.js"></script>
-<script src="../js/three-effects.js" type="module"></script>
-<script src="../js/3d-cards.js"></script>
-<script src="../js/3d-logo.js"></script>
-<script src="../js/gsap-animations.js"></script>
-
-<!-- FAQ Toggle Script -->
-<script>
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const item = question.parentElement;
-            const wasActive = item.classList.contains('active');
-
-            // Close all items
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-
-            // Open clicked item if it wasn't active
-            if (!wasActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-</script>
-
-<!-- Language Switcher - Innovation #30 -->
-<script src="../js/language-switcher.js"></script>
-
-<!-- Theme Toggle - Innovation #20 -->
-<script src="../js/theme-toggle.js"></script>
-<!-- Smooth Scroll Init -->
-<script src="../js/smooth-scroll.js"></script><!-- 3D Tilt Effect -->
-<script src="../js/tilt-3d.js"></script>
+    <!-- Custom Scripts -->
+    <script type="module" src="../js/main.js"></script>
 </body>
 
 </html>

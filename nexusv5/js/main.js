@@ -5,19 +5,24 @@
 import './config.js'; // Global config
 
 // New Modular Imports
-import { initParticles } from './features/particle-canvas.js';
+// import { initParticles } from './features/particle-canvas.js'; // Disabled for performance (Redundant with WASM)
 import { initNavbar } from './components/navbar.js';
 import { initScrollObserver } from './features/scroll-observer.js';
 import { initContactForm } from './features/contact-form.js';
 import { initUIInteractions } from './utils/ui-interactions.js';
 import { initSimpleTestimonials } from './components/simple-testimonials.js';
+import { initThemeSwitcher } from './components/theme-switcher.js';
+import { initCounters } from './counter-animation.js';
 
-import './three-effects.js'; // 3D Background
+import { initThreeBackground } from './three-effects.js'; // 3D Background (Persistent)
+import { initLiquidDistortion, destroyLiquidDistortion } from './liquid-distortion.js'; // Page specific (Lifecycle managed)
 import { initGSAPAnimations } from './gsap-animations.js';
 import { initBarbaTransitions } from './page-transitions.js';
 import { initSmoothScroll } from './smooth-scroll.js';
 
-// Styles (if we were using CSS imports via Vite, which we could)
+import barba from '@barba/core';
+
+// Styles
 // import '../css/style.css'; 
 
 console.log('🚀 Nexus v5 Main Module Loaded');
@@ -27,8 +32,8 @@ import './3d-cards.js';
 import './3d-logo.js';
 import './chatbot.js';
 import './whatsapp-widget.js';
-import './counter-animation.js';
-// import './activity-feed.js'; // Disabled
+// import './counter-animation.js'; 
+// import './activity-feed.js'; 
 import './cookie-consent.js';
 import './typewriter.js';
 import './command-palette.js';
@@ -39,7 +44,7 @@ import './promo-banner.js';
 import './exit-intent.js';
 import './newsletter-popup.js';
 import './testimonials-carousel.js';
-import './theme-toggle.js';
+
 import './scroll-reveal.js';
 import './sticky-cta.js';
 import './visitor-counter.js';
@@ -56,23 +61,42 @@ import './tilt-3d.js';
 import './supabase.js';
 import './auth.js';
 import './spotlight.js';
-import './liquid-distortion.js';
 import './quiz-widget.js';
 import './language-switcher.js';
 
-// Init Functions
-function initApp() {
-    initGSAPAnimations();
+// Init Global Features (Run once)
+function initGlobalFeatures() {
+    initThemeSwitcher(); // First for FOUC
     initSmoothScroll();
     initBarbaTransitions();
+    initThreeBackground();
+    initNavbar(); // Header is persistent
+}
 
-    // New modules initialization
-    initParticles();
-    initNavbar();
+// Init Page specific Features (Run every navigation)
+function initPageFeatures() {
+    initCounters();
     initScrollObserver();
-    initContactForm();
+    try { initContactForm(); } catch (e) { console.warn('Contact form not found'); }
     initUIInteractions();
     initSimpleTestimonials();
+    initLiquidDistortion(); // Re-init liquid effects on new images
+    initGSAPAnimations(); // Re-trigger GSAP setup
+}
+
+// Main Init Function
+function initApp() {
+    initGlobalFeatures();
+    initPageFeatures();
+
+    // Barba Hooks for Lifecycle Management
+    barba.hooks.beforeLeave(() => {
+        destroyLiquidDistortion();
+    });
+
+    barba.hooks.afterEnter(() => {
+        initPageFeatures();
+    });
 }
 
 if (document.readyState !== 'loading') {
