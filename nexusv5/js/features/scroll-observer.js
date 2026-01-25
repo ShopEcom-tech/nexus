@@ -1,4 +1,3 @@
-
 /**
  * Scroll Observer for animations
  */
@@ -14,33 +13,41 @@ export function initScrollObserver() {
     const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
+                entry.classList.add('scroll-animate-in');
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
     // Observe elements
-    document.querySelectorAll('.card, .benefit-card, .service-card, .pricing-card, .process-card, .testimonial-stat').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    // Added new selectors for testimonials page
+    const selectors = [
+        '.card',
+        '.benefit-card',
+        '.service-card',
+        '.pricing-card',
+        '.process-card',
+        '.testimonial-stat',
+        '.featured-testimonial',
+        '.result-card',
+        '.premium-testimonial-card',
+        '.hero-trust-item',
+        '.video-card',
+        '.cta-premium'
+    ];
+
+    document.querySelectorAll(selectors.join(', ')).forEach(el => {
+        el.classList.add('scroll-animate-init');
         observer.observe(el);
     });
 
-    // Add animation class
-    document.addEventListener('scroll', function () {
-        document.querySelectorAll('.animate-in').forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
-        });
-    });
+    // Clean up: Removed the scroll event listener that was forcing styles inline
 
-    // Trigger initial check
+    // Trigger initial check for already visible elements
     setTimeout(function () {
-        document.querySelectorAll('.animate-in').forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
+        document.querySelectorAll('.scroll-animate-init').forEach(el => {
+            // Check visibility manually if needed, or let observer handle it
+            // This timeout just ensures DOM is ready
         });
     }, 100);
 }
